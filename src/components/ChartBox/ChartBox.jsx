@@ -20,15 +20,20 @@ ChartJS.register(
   Tooltip,
   Legend
 );
+ChartJS.defaults.font.family = 'PT Sans';
+ChartJS.defaults.font.size = 14;
+ChartJS.defaults.color = 'black';
 
 const ChartBox = () => {
-  const solarData = d3.csv(csvFile, function (data) {
-    let newData;
-    for (let key in data) {
-      newData += data;
-    }
-    console.log(newData);
+  const arr = [];
+  d3.csv(csvFile, function (file) {
+    arr.push(file);
   });
+  console.log(arr);
+
+  const data = {};
+
+  const options = {};
 
   return <div className="chartBox"></div>;
 };
