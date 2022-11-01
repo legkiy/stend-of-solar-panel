@@ -28,32 +28,33 @@ ChartJS.defaults.font.size = 14;
 ChartJS.defaults.color = 'black';
 
 const arr = [];
-//date time amp1 amp2 amp3 v1 v2 v3
+
 d3.csv(csvFile, function (file) {
   arr.push(file);
 });
 
-const ChartBox = () => {
+const ChartBox = ({label, Xaxis, Yaxis, color }) => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
       setShow(true);
-    }, 300);
+    }, 500);
     return () => clearTimeout(timeout);
   }, [show]);
 
-  const day = arr.map((file) => file.date);
-  const amp = arr.map((file) => file.amp2);
+  const onXaxis = arr.map((file) => file[Xaxis]);
+  const onYaxis = arr.map((file) => file[Yaxis]); //date time amp1 amp2 amp3 v1 v2 v3
   console.log(arr);
-  console.log(day);
+  console.log(onXaxis);
+
   const data = {
-    labels: day,
+    labels: onXaxis,
     datasets: [
       {
-        label: 'amp',
-        data: amp,
-        borderColor: 'rgb(255, 99, 132)',
+        label: label,
+        data: onYaxis,
+        borderColor: color,
       },
     ],
   };
