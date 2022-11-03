@@ -4,9 +4,9 @@ import { useEffect, useState } from 'react';
 
 const SidePanel = ({ arr }) => {
   const [show, setShow] = useState(false);
-  const day = arr.map((file) => file.date);
-  const uniq = day.filter((item, index) => {
-    return day.indexOf(item) === index;
+  const days = arr.map((file) => file.date);
+  const day = days.filter((item, index) => {
+    return days.indexOf(item) === index;
   });
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const SidePanel = ({ arr }) => {
     return () => clearTimeout(timeout);
   }, [show]);
 
-  console.log(uniq);
+  console.log(days);
   return (
     <div className="sidePanel">
       <div className="side-el">
@@ -26,9 +26,11 @@ const SidePanel = ({ arr }) => {
         </a>
       </div>
       <div className="side-el">
-        <select>
-          {arr.map((file) => (
-            <option value={file.date}>{file.date}</option>
+        <select className="select-date">
+          {day.map((day, index) => (
+            <option key={index} value={day}>
+              {day}
+            </option>
           ))}
         </select>
       </div>
