@@ -2,21 +2,20 @@ import './SidePanel.scss';
 import isemLogo from './isem-logo.png';
 import { useEffect, useState } from 'react';
 
-const SidePanel = ({ arr }) => {
+const SidePanel = ({ arr, promise }) => {
   const [show, setShow] = useState(false);
+
   const days = arr.map((file) => file.date);
   const day = days.filter((item, index) => {
     return days.indexOf(item) === index;
   });
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
+    promise.then(() => {
       setShow(true);
-    }, 100);
-    return () => clearTimeout(timeout);
-  }, [show]);
+    });
+  }, [show, promise]);
 
-  console.log(days);
   return (
     <div className="sidePanel">
       <div className="side-el">

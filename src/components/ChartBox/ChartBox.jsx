@@ -26,18 +26,16 @@ ChartJS.defaults.font.family = 'Roboto';
 ChartJS.defaults.font.size = 14;
 ChartJS.defaults.color = 'black';
 
-const ChartBox = ({ arr, label, xAxis, yAxis, color }) => {
+const ChartBox = ({ arr, label, xAxis, yAxis, color, promise }) => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
+    promise.then(() => {
       setShow(true);
-    }, 100);
-    return () => clearTimeout(timeout);
-  }, [show]);
+    });
+  }, [show, promise]);
 
   //date time amp1 amp2 amp3 v1 v2 v3
-  const days = arr.map((file) => file.date);
   const time = arr.map((file) => file.time);
   const onXaxis = arr.map((file) => file[xAxis]);
   const onYaxis = arr.map((file) => file[yAxis]);
@@ -62,9 +60,9 @@ const ChartBox = ({ arr, label, xAxis, yAxis, color }) => {
         enabled: true,
         callbacks: {
           footer: function (context) {
-            if (time === time) {
-              return time;
-            }
+            const index = context[0].dataIndex;
+
+            return time[index];
           },
         },
       },
