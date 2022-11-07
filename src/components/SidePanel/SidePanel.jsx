@@ -1,5 +1,6 @@
 import './SidePanel.scss';
 import isemLogo from './isem-logo.png';
+import SideElement from './SideElement/SideElement';
 import { useEffect, useState } from 'react';
 
 const SidePanel = ({ arr, promise }) => {
@@ -16,23 +17,43 @@ const SidePanel = ({ arr, promise }) => {
     });
   }, [show, promise]);
 
+  const [chosenData, setChosenData] = useState();
+
   return (
     <div className="sidePanel">
-      <div className="side-el">
-        <a className="isemLogo" href="https://isem.irk.ru/">
-          <img src={isemLogo} alt="logo"></img>
-          ИСЭМ СО РАН
-        </a>
-      </div>
-      <div className="side-el">
-        <select className="select-date">
-          {day.map((day, index) => (
-            <option key={index} value={day}>
-              {day}
-            </option>
-          ))}
-        </select>
-      </div>
+      <SideElement
+        elementInside={
+          <a className="isemLogo" href="https://isem.irk.ru/">
+            <img src={isemLogo} alt="logo"></img>
+            ИСЭМ СО РАН
+          </a>
+        }
+      />
+      <SideElement
+        elementInside={
+          <select
+            className="date-selecter"
+            onChange={(day) => {
+              setChosenData(day.target.value);
+            }}
+          >
+            {day.map((day, index) => (
+              <option key={index} value={day}>
+                {day}
+              </option>
+            ))}
+          </select>
+        }
+      />
+      <SideElement
+        elementInside={
+          <p>
+            Chosen day
+            <br />
+            {chosenData}
+          </p>
+        }
+      />
     </div>
   );
 };
