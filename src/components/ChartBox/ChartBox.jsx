@@ -61,7 +61,6 @@ const ChartBox = ({ arr, label, yAxis, color, promise }) => {
         callbacks: {
           footer: function (context) {
             const index = context[0].dataIndex;
-
             return time[index];
           },
         },

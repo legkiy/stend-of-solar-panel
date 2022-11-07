@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 
 const SidePanel = ({ arr, promise }) => {
   const [show, setShow] = useState(false);
+  const [chosenDataStart, setChosenDataStart] = useState('start');
+  const [chosenDataEnd, setChosenDataEnd] = useState('end');
 
   const days = arr.map((file) => file.date);
   const day = days.filter((item, index) => {
@@ -16,9 +18,6 @@ const SidePanel = ({ arr, promise }) => {
       setShow(true);
     });
   }, [show, promise]);
-
-  const [chosenDataStart, setChosenDataStart] = useState();
-  const [chosenDataEnd, setChosenDataEnd] = useState();
 
   return (
     <div className="sidePanel">

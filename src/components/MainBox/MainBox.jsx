@@ -14,7 +14,6 @@ const MainBox = ({ arr, yAxis1, yAxis2, promise }) => {
       <ChartBox
         arr={arr}
         label={'Напряжение, V'}
-        
         yAxis={yAxis2}
         color={'rgb(28, 134, 255)'}
         promise={promise}

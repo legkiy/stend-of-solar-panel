@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './App.css';
 import SidePanel from './components/SidePanel/SidePanel';
 import MainBox from './components/MainBox/MainBox';
-import csvFile from './components/ChartBox/data/2022-09.csv';
+import csvFile from './components/ChartBox/data/2022-9.csv';
 
 import * as d3 from 'd3';
 
