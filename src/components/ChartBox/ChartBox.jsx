@@ -26,7 +26,7 @@ ChartJS.defaults.font.family = 'Roboto';
 ChartJS.defaults.font.size = 14;
 ChartJS.defaults.color = 'black';
 
-const ChartBox = ({ arr, label, xAxis, yAxis, color, promise }) => {
+const ChartBox = ({ arr, label, yAxis, color, promise }) => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -36,15 +36,15 @@ const ChartBox = ({ arr, label, xAxis, yAxis, color, promise }) => {
   }, [show, promise]);
 
   //date time amp1 amp2 amp3 v1 v2 v3
+  const date = arr.map((file) => file.date);
   const time = arr.map((file) => file.time);
-  const onXaxis = arr.map((file) => file[xAxis]);
   const onYaxis = arr.map((file) => file[yAxis]);
   const uniq = time.filter((item, index) => {
     return time.indexOf(item) === index;
   });
 
   const data = {
-    labels: onXaxis,
+    labels: date,
     datasets: [
       {
         label: label,
