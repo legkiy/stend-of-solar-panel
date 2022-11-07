@@ -17,7 +17,8 @@ const SidePanel = ({ arr, promise }) => {
     });
   }, [show, promise]);
 
-  const [chosenData, setChosenData] = useState();
+  const [chosenDataStart, setChosenDataStart] = useState();
+  const [chosenDataEnd, setChosenDataEnd] = useState();
 
   return (
     <div className="sidePanel">
@@ -31,18 +32,33 @@ const SidePanel = ({ arr, promise }) => {
       />
       <SideElement
         elementInside={
-          <select
-            className="date-selecter"
-            onChange={(day) => {
-              setChosenData(day.target.value);
-            }}
-          >
-            {day.map((day, index) => (
-              <option key={index} value={day}>
-                {day}
-              </option>
-            ))}
-          </select>
+          <div>
+            <select
+              className="date-selecter"
+              onChange={(dayStart) => {
+                setChosenDataStart(dayStart.target.value);
+              }}
+            >
+              {day.map((dayStart, index) => (
+                <option key={index} value={dayStart}>
+                  {dayStart}
+                </option>
+              ))}
+            </select>
+            -
+            <select
+              className="date-selecter"
+              onChange={(dayEnd) => {
+                setChosenDataEnd(dayEnd.target.value);
+              }}
+            >
+              {day.map((dayEnd, index) => (
+                <option key={index} value={dayEnd}>
+                  {dayEnd}
+                </option>
+              ))}
+            </select>
+          </div>
         }
       />
       <SideElement
@@ -50,7 +66,7 @@ const SidePanel = ({ arr, promise }) => {
           <p>
             Chosen day
             <br />
-            {chosenData}
+            {chosenDataStart} - {chosenDataEnd}
           </p>
         }
       />
