@@ -12,8 +12,11 @@
   align-items: center;
   text-decoration: none;
 }
-.date-selecter {
+.selecter {
   border: 2px solid rgb(165, 165, 165);
   background-color: rgba(0, 0, 0, 0);
   border-radius: 8px;
+  option {
+    size: 1;
+  }
 }

@@ -13,6 +13,30 @@ const SidePanel = ({ arr, promise }) => {
     return days.indexOf(item) === index;
   });
 
+  //get yaer + month for file selection
+  function getMonth() {
+    let content = [];
+    //цикл для перебора годов
+    for (let year = 2022; year < 2123; year++) {
+      //цикл для перебора месяцев внутри каждого года
+      for (let month = 1; month < 13; month++) {
+        //условие минимального значения
+        if (year === 2022 && month < 8) month = 8;
+        //условие для формата даты месяца меньше 10
+        if (month < 10) month = '0' + month;
+
+        const monthYear = month + '.' + year;
+        const monthYearFile = year + '-' + month;
+        content.push(
+          <option key={monthYearFile} value={monthYearFile}>
+            {monthYear}
+          </option>
+        );
+      }
+    }
+    return content;
+  }
+
   useEffect(() => {
     promise.then(() => {
       setShow(true);
@@ -30,10 +54,13 @@ const SidePanel = ({ arr, promise }) => {
         }
       />
       <SideElement
+        elementInside={<select className="selecter">{getMonth()}</select>}
+      />
+      <SideElement
         elementInside={
           <div>
             <select
-              className="date-selecter"
+              className="selecter"
               onChange={(dayStart) => {
                 setChosenDataStart(dayStart.target.value);
               }}
@@ -46,7 +73,7 @@ const SidePanel = ({ arr, promise }) => {
             </select>
             -
             <select
-              className="date-selecter"
+              className="selecter"
               onChange={(dayEnd) => {
                 setChosenDataEnd(dayEnd.target.value);
               }}
@@ -63,7 +90,7 @@ const SidePanel = ({ arr, promise }) => {
       <SideElement
         elementInside={
           <p>
-            Chosen day
+            Selected day
             <br />
             {chosenDataStart} - {chosenDataEnd}
           </p>
