@@ -1,6 +1,7 @@
 import './SidePanel.scss';
 import isemLogo from './isem-logo.png';
 import SideElement from './SideElement/SideElement';
+import Select from '../Select/Select';
 import { useEffect, useState } from 'react';
 
 const SidePanel = ({ arr, promise }) => {
@@ -42,6 +43,10 @@ const SidePanel = ({ arr, promise }) => {
       setShow(true);
     });
   }, [show, promise]);
+
+  function selectChangeHandler(event) {
+    console.log();
+  }
 
   return (
     <div className="sidePanel">
@@ -96,6 +101,9 @@ const SidePanel = ({ arr, promise }) => {
           </p>
         }
       />
+      {/* <SideElement
+        elementInside={<Select label={'blabla'} value={1} onChange={selectChangeHandler} />}
+      /> */}
     </div>
   );
 };
