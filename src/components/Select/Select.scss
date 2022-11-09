@@ -1,15 +1,15 @@
+$selectShdow: 2px 3px 8px 2px rgba(0, 0, 0, 0.12);
 .select {
   position: relative;
-  min-width: 100px;
+  width: 110px;
   margin: auto;
   .select-btn {
-    border: 1px solid black;
     display: flex;
     cursor: pointer;
     min-height: 23px;
     background: #ffffff;
-    padding: 5px;
-    box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
+    padding: 3px;
+    box-shadow: $selectShdow;
     border-radius: 12px;
     transition: all 0.2s;
   }
@@ -22,8 +22,9 @@
     top: 110%;
     background-color: #ffffff;
     width: 100%;
-    max-height: 400px;
-    overflow: scroll;
+    max-height: 300px;
+    overflow: hidden scroll;
+    box-shadow: $selectShdow;
     border-radius: 0 0 12px 12px;
     .select-item {
       text-align: left;
@@ -35,4 +36,11 @@
       }
     }
   }
+}
+.arrow {
+  color: #00000081;
+  margin: auto;
+  margin-right: 0;
+  height: 20px;
+  width: 17px;
 }

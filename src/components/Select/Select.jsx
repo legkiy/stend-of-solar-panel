@@ -10,7 +10,40 @@ const Select = ({ selected, setSelected, options, value, noSelect }) => {
         onClick={(e) => setIsActive(!isActive)}
       >
         {selected}
+        <span className="arrow">
+          <svg className="arrow">
+            <line
+              x1="1"
+              y1="3"
+              x2="1"
+              y2="18"
+              stroke="#00000081"
+              stroke-width="1"
+            />
+            <g>
+              <line
+                x1="5"
+                y1="8"
+                x2="10"
+                y2="12"
+                stroke="#000000"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+              <line
+                x1="10"
+                y1="12"
+                x2="15"
+                y2="8"
+                stroke="#000000"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </g>
+          </svg>
+        </span>
       </div>
+
       {isActive && (
         <div className="select-content">
           <div
