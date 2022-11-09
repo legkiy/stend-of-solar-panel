@@ -6,8 +6,10 @@ import { useEffect, useState } from 'react';
 
 const SidePanel = ({ arr, promise }) => {
   const [show, setShow] = useState(false);
-  const [chosenDataStart, setChosenDataStart] = useState('start');
-  const [chosenDataEnd, setChosenDataEnd] = useState('end');
+  const [chosenDayStart, setChosenDayStart] = useState('start');
+  const [chosenDayEnd, setChosenDayEnd] = useState('end');
+
+  const [selectedMonth, setSelectedMonth] = useState('...');
 
   const days = arr.map((file) => file.date);
   const day = days.filter((item, index) => {
@@ -15,27 +17,22 @@ const SidePanel = ({ arr, promise }) => {
   });
 
   //get yaer + month for file selection
-  function getMonth() {
-    let content = [];
-    //цикл для перебора годов
-    for (let year = 2022; year < 2123; year++) {
-      //цикл для перебора месяцев внутри каждого года
-      for (let month = 1; month < 13; month++) {
-        //условие минимального значения
-        if (year === 2022 && month < 8) month = 8;
-        //условие для формата даты месяца меньше 10
-        if (month < 10) month = '0' + month;
+  let fileOptions = [];
+  let fileValue = [];
+  //цикл для перебора годов
+  for (let year = 2022; year < 2073; year++) {
+    //цикл для перебора месяцев внутри каждого года
+    for (let month = 1; month < 13; month++) {
+      //условие минимального значения
+      if (year === 2022 && month < 8) month = 8;
+      //условие для формата даты месяца меньше 10
+      if (month < 10) month = '0' + month;
 
-        const monthYear = month + '.' + year;
-        const monthYearFile = year + '-' + month;
-        content.push(
-          <option key={monthYearFile} value={monthYearFile}>
-            {monthYear}
-          </option>
-        );
-      }
+      const monthYear = month + '.' + year;
+      const monthYearFile = year + '-' + month;
+      fileOptions.push(monthYear);
+      fileValue.push(monthYearFile);
     }
-    return content;
   }
 
   useEffect(() => {
@@ -43,10 +40,6 @@ const SidePanel = ({ arr, promise }) => {
       setShow(true);
     });
   }, [show, promise]);
-
-  function selectChangeHandler(event) {
-    console.log();
-  }
 
   return (
     <div className="sidePanel">
@@ -59,37 +52,33 @@ const SidePanel = ({ arr, promise }) => {
         }
       />
       <SideElement
-        elementInside={<select className="selecter">{getMonth()}</select>}
+        elementInside={
+          <Select
+            selected={selectedMonth}
+            setSelected={setSelectedMonth}
+            options={fileOptions}
+            value={fileValue}
+            noSelect="..."
+          />
+        }
       />
       <SideElement
         elementInside={
-          <div>
-            <select
-              className="selecter"
-              onChange={(dayStart) => {
-                setChosenDataStart(dayStart.target.value);
-              }}
-            >
-              {day.map((dayStart, index) => (
-                <option key={index} value={dayStart}>
-                  {dayStart}
-                </option>
-              ))}
-            </select>
+          <>
+            <Select
+              selected={chosenDayStart}
+              setSelected={setChosenDayStart}
+              options={day}
+              noSelect="start"
+            />
             -
-            <select
-              className="selecter"
-              onChange={(dayEnd) => {
-                setChosenDataEnd(dayEnd.target.value);
-              }}
-            >
-              {day.map((dayEnd, index) => (
-                <option key={index} value={dayEnd}>
-                  {dayEnd}
-                </option>
-              ))}
-            </select>
-          </div>
+            <Select
+              selected={chosenDayEnd}
+              setSelected={setChosenDayEnd}
+              options={day}
+              noSelect="end"
+            />
+          </>
         }
       />
       <SideElement
@@ -97,13 +86,10 @@ const SidePanel = ({ arr, promise }) => {
           <p>
             Selected day
             <br />
-            {chosenDataStart} - {chosenDataEnd}
+            {chosenDayStart} - {chosenDayEnd}
           </p>
         }
       />
-      {/* <SideElement
-        elementInside={<Select label={'blabla'} value={1} onChange={selectChangeHandler} />}
-      /> */}
     </div>
   );
 };

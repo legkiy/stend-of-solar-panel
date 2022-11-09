@@ -1,12 +1,38 @@
 .select {
-  background: blue;
-  label {
-    background-color: cornflowerblue;
-    display: block;
+  position: relative;
+  min-width: 100px;
+  margin: auto;
+  .select-btn {
+    border: 1px solid black;
+    display: flex;
+    cursor: pointer;
+    min-height: 23px;
+    background: #ffffff;
+    padding: 5px;
+    box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
+    border-radius: 12px;
+    transition: all 0.2s;
   }
-  select {
-    background-color: darkgray;
-    display: block;
-    
+  .select-btn-active {
+    border-radius: 12px 12px 0 0;
+  }
+  .select-content {
+    position: absolute;
+    z-index: 1;
+    top: 110%;
+    background-color: #ffffff;
+    width: 100%;
+    max-height: 400px;
+    overflow: scroll;
+    border-radius: 0 0 12px 12px;
+    .select-item {
+      text-align: left;
+      padding: 5px;
+      transition: all 0.1s;
+      cursor: pointer;
+      &:hover {
+        background: #e4e4e4;
+      }
+    }
   }
 }
