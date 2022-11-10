@@ -6,73 +6,67 @@ const Select = ({ selected, setSelected, options, value, noSelect }) => {
   return (
     <div className="select">
       <div
-        className={`select-btn ${isActive && 'select-btn-active'}`}
-        onClick={(e) => setIsActive(!isActive)}
+        className={`select-btn ${isActive ? 'select-btn-active' : ''}`}
+        onClick={(e) => {
+          setIsActive(!isActive);
+          console.log(e.target);
+        }}
       >
         {selected}
-        <span className="arrow">
+        <span className="arrow-box">
           <svg className="arrow">
-            <line
-              x1="1"
-              y1="3"
-              x2="1"
-              y2="18"
-              stroke="#00000081"
-              stroke-width="1"
-            />
-            <g>
+            <g className={isActive ? 'reverse-rotate-arrow' : 'rotate-arrow'}>
               <line
-                x1="5"
-                y1="8"
-                x2="10"
-                y2="12"
+                className="line"
+                x1="1"
+                y1="5"
+                x2="7"
+                y2="9"
                 stroke="#000000"
-                stroke-width="2"
-                stroke-linecap="round"
+                strokeWidth="2"
+                strokeLinecap="round"
               />
               <line
-                x1="10"
-                y1="12"
-                x2="15"
-                y2="8"
+                x1="7"
+                y1="9"
+                x2="13"
+                y2="5"
                 stroke="#000000"
-                stroke-width="2"
-                stroke-linecap="round"
+                strokeWidth="2"
+                strokeLinecap="round"
               />
             </g>
           </svg>
         </span>
       </div>
-
-      {isActive && (
-        <div className="select-content">
+      
+      <div className={`select-content ${isActive ? 'not-collapsed' : 'collapsed'}`}>
+        <div
+          className="select-item"
+          onClick={(e) => {
+            setSelected(noSelect);
+            setIsActive(false);
+          }}
+        >
+          {noSelect}
+        </div>
+        {options.map((option, index) => (
           <div
             className="select-item"
+            key={index}
+            value={value}
             onClick={(e) => {
-              setSelected(noSelect);
+              setSelected(option);
               setIsActive(false);
+              if (value[index]) {
+                console.log(value[index]);
+              }
             }}
           >
-            {noSelect}
+            {option}
           </div>
-          {options.map((option, index) => (
-            <div
-              className="select-item"
-              key={index}
-              value={value}
-              onClick={(e) => {
-                setSelected(option);
-                setIsActive(false);
-                if (value[index]) {
-                  console.log(value[index]);
-                }
-              }}
-            >
-              {option}
-            </div>
-          ))}
-        </div>
-      )}
+        ))}
+      </div>
     </div>
   );
 };

@@ -39,9 +39,6 @@ const ChartBox = ({ arr, label, yAxis, color, promise }) => {
   const date = arr.map((file) => file.date);
   const time = arr.map((file) => file.time);
   const onYaxis = arr.map((file) => file[yAxis]);
-  const uniq = time.filter((item, index) => {
-    return time.indexOf(item) === index;
-  });
 
   const data = {
     labels: date,
