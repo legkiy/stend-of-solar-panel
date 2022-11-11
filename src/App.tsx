@@ -6,6 +6,12 @@ import csvFile from './components/ChartBox/data/2022-09.csv';
 
 import * as d3 from 'd3';
 
+export interface IMapFile {
+  date?: string;
+  item?: boolean;
+  index?: number;
+}
+
 function App() {
   const [yAxis1, setYAxis] = useState();
 
@@ -37,11 +43,14 @@ function App() {
 
   getData();
 
-  const arr: [] = [];
+  const arr: string[] = [];
 
-  const promise = d3.csv(csvFile, function (file:any) {
-    arr.push(file);
-  });
+  const promise: Promise<d3.DSVRowArray<string>> = d3.csv(
+    csvFile,
+    function (file: string) {
+      arr.push(file);
+    }
+  );
 
   return (
     <div className="App">

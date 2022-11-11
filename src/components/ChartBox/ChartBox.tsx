@@ -12,6 +12,8 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 
+import { IMapFile } from '../../App';
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -26,9 +28,16 @@ ChartJS.defaults.font.family = 'Roboto';
 ChartJS.defaults.font.size = 14;
 ChartJS.defaults.color = 'black';
 
-const ChartBox = ({ arr, label, yAxis, color, promise }) => {
-  const [show, setShow] = useState(false);
+type ChartProps = {
+  arr: string[];
+  label: string;
+  yAxis: string;
+  color: string;
+  promise: Promise<d3.DSVRowArray<string>>;
+};
 
+const ChartBox = ({ arr, label, yAxis, color, promise }: ChartProps) => {
+  const [show, setShow] = useState(false);
   useEffect(() => {
     promise.then(() => {
       setShow(true);
@@ -36,9 +45,9 @@ const ChartBox = ({ arr, label, yAxis, color, promise }) => {
   }, [show, promise]);
 
   //date time amp1 amp2 amp3 v1 v2 v3
-  const date = arr.map((file) => file.date);
-  const time = arr.map((file) => file.time);
-  const onYaxis = arr.map((file) => file[yAxis]);
+  const date = arr.map((file: any): IMapFile => file.date);
+  const time = arr.map((file: any): IMapFile => file.time);
+  const onYaxis = arr.map((file: any): IMapFile => file[yAxis]);
 
   const data = {
     labels: date,
@@ -51,12 +60,12 @@ const ChartBox = ({ arr, label, yAxis, color, promise }) => {
     ],
   };
 
-  const options = {
+  const options: object = {
     plugins: {
       tooltip: {
         enabled: true,
         callbacks: {
-          footer: function (context) {
+          footer: function (context: any) {
             const index = context[0].dataIndex;
             return time[index];
           },

@@ -1,11 +1,21 @@
 import { useState } from 'react';
 import './Select.scss';
 
-type IputProps={
-  
-}
+type IputProps = {
+  selected: string;
+  setSelected: any;
+  options: string[];
+  value?: string[];
+  noSelect: string;
+};
 
-const Select = ({ selected, setSelected, options, value, noSelect }) => {
+const Select = ({
+  selected,
+  setSelected,
+  options,
+  value,
+  noSelect,
+}: IputProps) => {
   const [isActive, setIsActive] = useState(false);
   return (
     <div className="select">
@@ -43,8 +53,10 @@ const Select = ({ selected, setSelected, options, value, noSelect }) => {
           </svg>
         </span>
       </div>
-      
-      <div className={`select-content ${isActive ? 'not-collapsed' : 'collapsed'}`}>
+
+      <div
+        className={`select-content ${isActive ? 'not-collapsed' : 'collapsed'}`}
+      >
         <div
           className="select-item"
           onClick={(e) => {
@@ -58,11 +70,10 @@ const Select = ({ selected, setSelected, options, value, noSelect }) => {
           <div
             className="select-item"
             key={index}
-            value={value}
             onClick={(e) => {
               setSelected(option);
               setIsActive(false);
-              if (value[index]) {
+              if (value && value[index]) {
                 console.log(value[index]);
               }
             }}

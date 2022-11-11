@@ -4,15 +4,24 @@ import SideElement from './SideElement/SideElement';
 import Select from '../Select/Select';
 import { useEffect, useState } from 'react';
 
-const SidePanel = ({ arr, promise }) => {
+import { IMapFile } from '../../App';
+
+type InputProps = {
+  arr: string[];
+  promise: Promise<d3.DSVRowArray<string>>;
+};
+
+const SidePanel = ({ arr, promise }: InputProps) => {
   const [show, setShow] = useState(false);
   const [chosenDayStart, setChosenDayStart] = useState('start');
   const [chosenDayEnd, setChosenDayEnd] = useState('end');
 
   const [selectedMonth, setSelectedMonth] = useState('...');
 
-  const days = arr.map((file) => file.date);
-  const day = days.filter((item, index) => {
+  const days: any = arr.map((file: any): IMapFile => {
+    date: return file.date;
+  });
+  const day: any = days.filter((item: string, index: number) => {
     return days.indexOf(item) === index;
   });
 
@@ -26,9 +35,10 @@ const SidePanel = ({ arr, promise }) => {
       //условие минимального значения
       if (year === 2022 && month < 8) month = 8;
       //условие для формата даты месяца меньше 10
-      if (month < 10) month = '0' + month;
+      let newMonth: string = '';
+      if (month < 10) newMonth = '0' + month;
 
-      const monthYear = month + '.' + year;
+      const monthYear = newMonth + '.' + year;
       const monthYearFile = year + '-' + month;
       fileOptions.push(monthYear);
       fileValue.push(monthYearFile);

@@ -1,7 +1,12 @@
 import './MainBox.scss';
 import ChartBox from '../ChartBox/ChartBox';
 
-const MainBox = ({ arr, promise }) => {
+type InputProps ={
+  arr:string[],
+  promise:Promise<d3.DSVRowArray<string>>,
+}
+
+const MainBox = ({ arr, promise }:InputProps) => {
   return (
     <div className="mainBox">
       <ChartBox
