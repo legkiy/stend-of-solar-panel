@@ -17,6 +17,7 @@ const Select = ({
   noSelect,
 }: IputProps) => {
   const [isActive, setIsActive] = useState(false);
+
   return (
     <div className="select">
       <div

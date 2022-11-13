@@ -27,6 +27,7 @@ $maxHeightSelectContent: 300px;
     top: 110%;
     background-color: #ffffff;
     width: 100%;
+    left: 0;
     overflow: hidden scroll;
     box-shadow: $selectShdow;
     border-radius: 0 0 12px 12px;
@@ -38,6 +39,8 @@ $maxHeightSelectContent: 300px;
   }
   .collapsed {
     max-height: 0;
+    left: 50%;
+    width: 0;
     transition: all 0.2s;
   }
   .select-item {
@@ -61,7 +64,7 @@ $maxHeightSelectContent: 300px;
 
 .arrow {
   color: #00000081;
-  height: 15px;
+  height: 14px;
   width: 14px;
 }
 

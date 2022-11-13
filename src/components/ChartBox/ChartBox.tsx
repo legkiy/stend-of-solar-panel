@@ -29,25 +29,33 @@ ChartJS.defaults.font.size = 14;
 ChartJS.defaults.color = 'black';
 
 type ChartProps = {
-  arr: string[];
+  arr: IMapFile[];
   label: string;
-  yAxis: string;
+  yAxis: 'amp1' | 'amp2' | 'amp3' | 'v1' | 'v2' | 'v3';
   color: string;
   promise: Promise<d3.DSVRowArray<string>>;
+  closeSelect: boolean;
 };
 
-const ChartBox = ({ arr, label, yAxis, color, promise }: ChartProps) => {
+const ChartBox = ({
+  arr,
+  label,
+  yAxis,
+  color,
+  promise,
+  closeSelect,
+}: ChartProps) => {
   const [show, setShow] = useState(false);
   useEffect(() => {
     promise.then(() => {
       setShow(true);
     });
-  }, [show, promise]);
+  }, [show, promise, closeSelect]);
 
   //date time amp1 amp2 amp3 v1 v2 v3
-  const date = arr.map((file: any): IMapFile => file.date);
-  const time = arr.map((file: any): IMapFile => file.time);
-  const onYaxis = arr.map((file: any): IMapFile => file[yAxis]);
+  const date = arr.map((file: IMapFile) => file.date);
+  const time = arr.map((file: IMapFile) => file.time);
+  const onYaxis = arr.map((file: IMapFile) => file[yAxis]);
 
   const data = {
     labels: date,
@@ -65,7 +73,7 @@ const ChartBox = ({ arr, label, yAxis, color, promise }: ChartProps) => {
       tooltip: {
         enabled: true,
         callbacks: {
-          footer: function (context: any) {
+          footer: function (context: [{ dataIndex: number }]) {
             const index = context[0].dataIndex;
             return time[index];
           },
@@ -73,7 +81,6 @@ const ChartBox = ({ arr, label, yAxis, color, promise }: ChartProps) => {
       },
     },
   };
-
   return (
     <div className="chartBox">
       <Line data={data} options={options} />

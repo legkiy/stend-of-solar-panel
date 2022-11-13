@@ -4,24 +4,27 @@ import SideElement from './SideElement/SideElement';
 import Select from '../Select/Select';
 import { useEffect, useState } from 'react';
 
-import { IMapFile } from '../../App';
+interface IDate {
+  date: string;
+}
 
 type InputProps = {
-  arr: string[];
+  arr: IDate[];
   promise: Promise<d3.DSVRowArray<string>>;
+  closeSelect:boolean;
 };
 
-const SidePanel = ({ arr, promise }: InputProps) => {
+const SidePanel = ({ arr, promise, closeSelect }: InputProps) => {
   const [show, setShow] = useState(false);
   const [chosenDayStart, setChosenDayStart] = useState('start');
   const [chosenDayEnd, setChosenDayEnd] = useState('end');
 
   const [selectedMonth, setSelectedMonth] = useState('...');
 
-  const days: any = arr.map((file: any): IMapFile => {
+  const days = arr.map((file: IDate) => {
     date: return file.date;
   });
-  const day: any = days.filter((item: string, index: number) => {
+  const day = days.filter((item: string, index: number) => {
     return days.indexOf(item) === index;
   });
 
@@ -35,7 +38,7 @@ const SidePanel = ({ arr, promise }: InputProps) => {
       //условие минимального значения
       if (year === 2022 && month < 8) month = 8;
       //условие для формата даты месяца меньше 10
-      let newMonth: string = '';
+      let newMonth: string = String(month);
       if (month < 10) newMonth = '0' + month;
 
       const monthYear = newMonth + '.' + year;
