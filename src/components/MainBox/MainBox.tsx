@@ -5,27 +5,41 @@ import { IMapFile } from '../../App';
 type InputProps = {
   arr: IMapFile[];
   promise: Promise<d3.DSVRowArray<string>>;
-  closeSelect:boolean;
+  arrDate: string[];
+  arrTime: string[];
+  arrAmp: number[];
+  arrV: number[];
 };
 
-const MainBox = ({ arr, promise, closeSelect }: InputProps) => {
+const MainBox = ({
+  arr,
+  promise,
+  arrDate,
+  arrTime,
+  arrAmp,
+  arrV,
+}: InputProps) => {
   return (
     <div className="mainBox">
       <ChartBox
         arr={arr}
         label={'Сила тока, A'}
         yAxis={'amp2'}
+        xAxis={arrDate}
+        arrTime={arrTime}
         color={'rgb(255, 99, 132)'}
         promise={promise}
-        closeSelect={closeSelect}
+        arrYaxis={arrAmp}
       />
       <ChartBox
         arr={arr}
         label={'Напряжение, V'}
         yAxis={'v2'}
+        xAxis={arrDate}
+        arrTime={arrTime}
         color={'rgb(28, 134, 255)'}
         promise={promise}
-        closeSelect={closeSelect}
+        arrYaxis={arrV}
       />
     </div>
   );

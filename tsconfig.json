@@ -11,5 +11,5 @@
     "strict": true /* Enable all strict type-checking options. */,
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
-  "include": ["src", "types", "*.csv", "createComponent.js"]
+  "include": ["src", "types", "createComponent.js"]
 }

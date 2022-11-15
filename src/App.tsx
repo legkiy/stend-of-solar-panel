@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import './App.css';
 import SidePanel from './components/SidePanel/SidePanel';
 import MainBox from './components/MainBox/MainBox';
@@ -19,9 +18,6 @@ export interface IMapFile {
 }
 
 function App() {
-  const [yAxis1, setYAxis] = useState();
-  const [closeSelect, setCloseSelect] = useState(true);
-
   // let csv = '../../../../Downloads/public/2022-09.csv';
   let csv: string = '/2022-09.csv';
 
@@ -38,29 +34,54 @@ function App() {
       headers,
     });
     const data = await res.text();
-    const table = data.split('\n');
+    const table = data.split(/\n/).slice(1);
     const tableLenght = table.length - 1;
     const newTable = table.splice(0, tableLenght);
     newTable.forEach((row) => {
       const columns = row.split(',');
       const date = columns[0];
+      const time = columns[1];
+      const amp1 = Number(columns[2]);
+      const amp2 = Number(columns[3]);
+      const amp3 = Number(columns[4]);
+      const v1 = Number(columns[5]);
+      const v2 = Number(columns[6]);
+      const v3 = Number(columns[7]);
+
+      arrDate.push(date);
+      arrTime.push(time);
+
+      arrAmp.push(amp2);
+      arrV.push(v2);
     });
   }
+
+  const arrDate: string[] = [];
+  const arrTime: string[] = [];
+  const arrAmp: number[] = [];
+  const arrV: number[] = [];
 
   getData();
 
   const arr: IMapFile[] = [];
 
-  const addEl = function (file: IMapFile) {
+  const addEl: any = function (file: IMapFile) {
     arr.push(file);
   };
-  //@ts-ignore
+
   const promise: Promise<d3.DSVRowArray<string>> = d3.csv(csvFile, addEl);
 
   return (
     <div className="App">
-      <SidePanel arr={arr} promise={promise} closeSelect={closeSelect} />
-      <MainBox arr={arr} promise={promise} closeSelect={closeSelect} />
+      <SidePanel arr={arr} promise={promise} arrDate={arrDate} />
+      <MainBox
+        arr={arr}
+        promise={promise}
+        arrDate={arrDate}
+        arrTime={arrTime}
+        arrAmp={arrAmp}
+        arrV={arrV}
+      />
     </div>
   );
 }

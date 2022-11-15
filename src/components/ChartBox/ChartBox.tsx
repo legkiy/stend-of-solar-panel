@@ -32,33 +32,43 @@ type ChartProps = {
   arr: IMapFile[];
   label: string;
   yAxis: 'amp1' | 'amp2' | 'amp3' | 'v1' | 'v2' | 'v3';
+  xAxis: string[];
+  arrTime: string[];
+  arrYaxis: number[];
   color: string;
   promise: Promise<d3.DSVRowArray<string>>;
-  closeSelect: boolean;
 };
 
 const ChartBox = ({
   arr,
   label,
   yAxis,
+  xAxis,
+  arrTime,
+  arrYaxis,
   color,
   promise,
-  closeSelect,
 }: ChartProps) => {
   const [show, setShow] = useState(false);
   useEffect(() => {
     promise.then(() => {
       setShow(true);
     });
-  }, [show, promise, closeSelect]);
+  }, [show, promise]);
 
   //date time amp1 amp2 amp3 v1 v2 v3
-  const date = arr.map((file: IMapFile) => file.date);
-  const time = arr.map((file: IMapFile) => file.time);
-  const onYaxis = arr.map((file: IMapFile) => file[yAxis]);
+  const onXaxis = xAxis.map((file) => {
+    return file;
+  });
+  const time = arrTime.map((file) => {
+    return file;
+  });
+  const onYaxis = arrYaxis.map((file: any) => {
+    return file;
+  });
 
   const data = {
-    labels: date,
+    labels: onXaxis,
     datasets: [
       {
         label: label,

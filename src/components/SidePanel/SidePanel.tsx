@@ -11,18 +11,18 @@ interface IDate {
 type InputProps = {
   arr: IDate[];
   promise: Promise<d3.DSVRowArray<string>>;
-  closeSelect:boolean;
+  arrDate: string[];
 };
 
-const SidePanel = ({ arr, promise, closeSelect }: InputProps) => {
+const SidePanel = ({ arr, promise, arrDate }: InputProps) => {
   const [show, setShow] = useState(false);
   const [chosenDayStart, setChosenDayStart] = useState('start');
   const [chosenDayEnd, setChosenDayEnd] = useState('end');
 
   const [selectedMonth, setSelectedMonth] = useState('...');
 
-  const days = arr.map((file: IDate) => {
-    date: return file.date;
+  const days = arrDate.map((file) => {
+    return file;
   });
   const day = days.filter((item: string, index: number) => {
     return days.indexOf(item) === index;
