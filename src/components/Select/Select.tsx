@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import './Select.scss';
 
-type IputProps = {
+interface IpropsSelect {
   selected: string;
-  setSelected: any;
+  setSelected: React.Dispatch<React.SetStateAction<string>>;
   options: string[];
   value?: string[];
   noSelect: string;
-};
+  setDataFile?: React.Dispatch<React.SetStateAction<string>> | undefined;
+}
 
 const Select = ({
   selected,
@@ -15,7 +16,8 @@ const Select = ({
   options,
   value,
   noSelect,
-}: IputProps) => {
+  setDataFile,
+}: IpropsSelect) => {
   const [isActive, setIsActive] = useState(false);
 
   return (
@@ -24,7 +26,6 @@ const Select = ({
         className={`select-btn ${isActive ? 'select-btn-active' : ''}`}
         onClick={(e) => {
           setIsActive(!isActive);
-          console.log(e.target);
         }}
       >
         {selected}
@@ -75,6 +76,7 @@ const Select = ({
               setSelected(option);
               setIsActive(false);
               if (value && value[index]) {
+                setDataFile?.(value[index]);
                 console.log(value[index]);
               }
             }}

@@ -8,13 +8,14 @@ interface IDate {
   date: string;
 }
 
-type InputProps = {
+interface IpropsSidePanel {
   arr: IDate[];
   promise: Promise<d3.DSVRowArray<string>>;
   arrDate: string[];
-};
+  setDataFile?: React.Dispatch<React.SetStateAction<string>> | undefined;
+}
 
-const SidePanel = ({ arr, promise, arrDate }: InputProps) => {
+const SidePanel = ({ arr, promise, arrDate, setDataFile }: IpropsSidePanel) => {
   const [show, setShow] = useState(false);
   const [chosenDayStart, setChosenDayStart] = useState('start');
   const [chosenDayEnd, setChosenDayEnd] = useState('end');
@@ -29,20 +30,20 @@ const SidePanel = ({ arr, promise, arrDate }: InputProps) => {
   });
 
   //get yaer + month for file selection
-  let fileOptions = [];
-  let fileValue = [];
+  const fileOptions = [];
+  const fileValue = [];
   //цикл для перебора годов
   for (let year = 2022; year < 2073; year++) {
     //цикл для перебора месяцев внутри каждого года
     for (let month = 1; month < 13; month++) {
       //условие минимального значения
-      if (year === 2022 && month < 8) month = 8;
+      if (year === 2022 && month < 9) month = 9;
       //условие для формата даты месяца меньше 10
       let newMonth: string = String(month);
       if (month < 10) newMonth = '0' + month;
 
       const monthYear = newMonth + '.' + year;
-      const monthYearFile = year + '-' + month;
+      const monthYearFile = year + '-' + newMonth;
       fileOptions.push(monthYear);
       fileValue.push(monthYearFile);
     }
@@ -72,6 +73,7 @@ const SidePanel = ({ arr, promise, arrDate }: InputProps) => {
             options={fileOptions}
             value={fileValue}
             noSelect="..."
+            setDataFile={setDataFile}
           />
         }
       />

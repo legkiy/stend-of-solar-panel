@@ -28,7 +28,7 @@ ChartJS.defaults.font.family = 'Roboto';
 ChartJS.defaults.font.size = 14;
 ChartJS.defaults.color = 'black';
 
-type ChartProps = {
+type InputPropsChartBox = {
   arr: IMapFile[];
   label: string;
   yAxis: 'amp1' | 'amp2' | 'amp3' | 'v1' | 'v2' | 'v3';
@@ -48,7 +48,7 @@ const ChartBox = ({
   arrYaxis,
   color,
   promise,
-}: ChartProps) => {
+}: InputPropsChartBox) => {
   const [show, setShow] = useState(false);
   useEffect(() => {
     promise.then(() => {

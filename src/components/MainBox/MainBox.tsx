@@ -2,7 +2,7 @@ import './MainBox.scss';
 import ChartBox from '../ChartBox/ChartBox';
 import { IMapFile } from '../../App';
 
-type InputProps = {
+type InputPropsMainBox = {
   arr: IMapFile[];
   promise: Promise<d3.DSVRowArray<string>>;
   arrDate: string[];
@@ -18,7 +18,7 @@ const MainBox = ({
   arrTime,
   arrAmp,
   arrV,
-}: InputProps) => {
+}: InputPropsMainBox) => {
   return (
     <div className="mainBox">
       <ChartBox

@@ -4,6 +4,7 @@ import MainBox from './components/MainBox/MainBox';
 import csvFile from './components/ChartBox/data/2022-09.csv';
 
 import * as d3 from 'd3';
+import { useState, useEffect } from 'react';
 
 //date time amp1 amp2 amp3 v1 v2 v3
 export interface IMapFile {
@@ -18,8 +19,8 @@ export interface IMapFile {
 }
 
 function App() {
-  // let csv = '../../../../Downloads/public/2022-09.csv';
-  let csv: string = '/2022-09.csv';
+  const [dataFile, setDataFile] = useState('2022-09');
+  let csv: string = `/${dataFile}.csv`;
 
   let url: string = `https://files.isem.irk.ru/remote.php/dav/files/nikita.max/%D0%94%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5-%D1%81%D1%82%D0%B5%D0%BD%D0%B4%D0%B0/2022-09.csv`;
 
@@ -73,7 +74,12 @@ function App() {
 
   return (
     <div className="App">
-      <SidePanel arr={arr} promise={promise} arrDate={arrDate} />
+      <SidePanel
+        arr={arr}
+        promise={promise}
+        arrDate={arrDate}
+        setDataFile={setDataFile}
+      />
       <MainBox
         arr={arr}
         promise={promise}
