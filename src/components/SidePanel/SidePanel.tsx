@@ -12,10 +12,17 @@ interface IpropsSidePanel {
   arr: IDate[];
   promise: Promise<d3.DSVRowArray<string>>;
   arrDate: string[];
-  setDataFile?: React.Dispatch<React.SetStateAction<string>> | undefined;
+  setDataFile: React.Dispatch<React.SetStateAction<string>> | undefined;
+  setPanel: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const SidePanel = ({ arr, promise, arrDate, setDataFile }: IpropsSidePanel) => {
+const SidePanel = ({
+  arr,
+  promise,
+  arrDate,
+  setDataFile,
+  setPanel,
+}: IpropsSidePanel) => {
   const [show, setShow] = useState(false);
   const [chosenDayStart, setChosenDayStart] = useState('start');
   const [chosenDayEnd, setChosenDayEnd] = useState('end');
@@ -67,14 +74,23 @@ const SidePanel = ({ arr, promise, arrDate, setDataFile }: IpropsSidePanel) => {
       />
       <SideElement
         elementInside={
-          <Select
-            selected={selectedMonth}
-            setSelected={setSelectedMonth}
-            options={fileOptions}
-            value={fileValue}
-            noSelect="..."
-            setDataFile={setDataFile}
-          />
+          <>
+            <Select
+              selected={selectedMonth}
+              setSelected={setSelectedMonth}
+              options={fileOptions}
+              value={fileValue}
+              noSelect="..."
+              setDataFile={setDataFile}
+            />
+            <Select
+              selected={0}
+              setSelected={setPanel}
+              options={['1', '2', '3']}
+              value={[0, 1, 2]}
+              noSelect={'1'}
+            />
+          </>
         }
       />
       <SideElement

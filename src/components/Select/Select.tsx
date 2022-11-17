@@ -2,10 +2,12 @@ import { useState } from 'react';
 import './Select.scss';
 
 interface IpropsSelect {
-  selected: string;
-  setSelected: React.Dispatch<React.SetStateAction<string>>;
-  options: string[];
-  value?: string[];
+  selected: string | number;
+  setSelected?:
+    | React.Dispatch<React.SetStateAction<string>>
+    | React.Dispatch<React.SetStateAction<number>>;
+  options: Array<string | number>;
+  value?: Array<string | number>;
   noSelect: string;
   setDataFile?: React.Dispatch<React.SetStateAction<string>> | undefined;
 }
@@ -62,7 +64,7 @@ const Select = ({
         <div
           className="select-item"
           onClick={(e) => {
-            setSelected(noSelect);
+            setSelected?.(noSelect);
             setIsActive(false);
           }}
         >
@@ -73,10 +75,10 @@ const Select = ({
             className="select-item"
             key={index}
             onClick={(e) => {
-              setSelected(option);
+              setSelected?.(option);
               setIsActive(false);
               if (value && value[index]) {
-                setDataFile?.(value[index]);
+                setDataFile?.(value[index] as string);
                 console.log(value[index]);
               }
             }}

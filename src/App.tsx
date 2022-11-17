@@ -22,7 +22,9 @@ function App() {
   const [dataFile, setDataFile] = useState('2022-09');
   let csv: string = `/${dataFile}.csv`;
 
-  let url: string = `https://files.isem.irk.ru/remote.php/dav/files/nikita.max/%D0%94%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5-%D1%81%D1%82%D0%B5%D0%BD%D0%B4%D0%B0/2022-09.csv`;
+  const [panel, setPanel] = useState<number>(0);
+
+  let url = `https://files.isem.irk.ru/remote.php/dav/files/nikita.max/%D0%94%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5-%D1%81%D1%82%D0%B5%D0%BD%D0%B4%D0%B0/${dataFile}.csv`;
 
   const username: 'nikita.max' = 'nikita.max';
   const password: 'E4DqvJacNxSW' = 'E4DqvJacNxSW';
@@ -42,6 +44,7 @@ function App() {
       const columns = row.split(',');
       const date = columns[0];
       const time = columns[1];
+
       const amp1 = Number(columns[2]);
       const amp2 = Number(columns[3]);
       const amp3 = Number(columns[4]);
@@ -49,11 +52,14 @@ function App() {
       const v2 = Number(columns[6]);
       const v3 = Number(columns[7]);
 
+      const amp = [amp1, amp2, amp3];
+      const volt = [v1, v2, v3];
+
       arrDate.push(date);
       arrTime.push(time);
 
-      arrAmp.push(amp2);
-      arrV.push(v2);
+      arrAmp.push(amp[panel]);
+      arrV.push(volt[panel]);
     });
   }
 
@@ -79,6 +85,7 @@ function App() {
         promise={promise}
         arrDate={arrDate}
         setDataFile={setDataFile}
+        setPanel={setPanel}
       />
       <MainBox
         arr={arr}
