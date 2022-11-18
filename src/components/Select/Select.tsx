@@ -2,12 +2,10 @@ import { useState } from 'react';
 import './Select.scss';
 
 interface IpropsSelect {
-  selected: string | number;
-  setSelected?:
-    | React.Dispatch<React.SetStateAction<string>>
-    | React.Dispatch<React.SetStateAction<number>>;
-  options: Array<string | number>;
-  value?: Array<string | number>;
+  selected: string;
+  setSelected?: React.Dispatch<React.SetStateAction<string>>;
+  options: Array<string>;
+  value?: Array<string>;
   noSelect: string;
   setDataFile?: React.Dispatch<React.SetStateAction<string>> | undefined;
 }

@@ -74,23 +74,14 @@ const SidePanel = ({
       />
       <SideElement
         elementInside={
-          <>
-            <Select
-              selected={selectedMonth}
-              setSelected={setSelectedMonth}
-              options={fileOptions}
-              value={fileValue}
-              noSelect="..."
-              setDataFile={setDataFile}
-            />
-            <Select
-              selected={0}
-              setSelected={setPanel}
-              options={['1', '2', '3']}
-              value={[0, 1, 2]}
-              noSelect={'1'}
-            />
-          </>
+          <Select
+            selected={selectedMonth}
+            setSelected={setSelectedMonth}
+            options={fileOptions}
+            value={fileValue}
+            noSelect="..."
+            setDataFile={setDataFile}
+          />
         }
       />
       <SideElement
