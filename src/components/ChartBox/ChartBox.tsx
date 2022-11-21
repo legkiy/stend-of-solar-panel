@@ -27,13 +27,22 @@ ChartJS.defaults.font.size = 14;
 ChartJS.defaults.color = 'black';
 
 interface IProprs {
+  label: string;
   arrDate: string[];
   arrTime: string[];
   yAxis: string[];
+  color: string;
   promise: Promise<void>;
 }
 
-const ChartBox = ({ arrDate, arrTime, yAxis, promise }: IProprs) => {
+const ChartBox = ({
+  label,
+  arrDate,
+  arrTime,
+  yAxis,
+  color,
+  promise,
+}: IProprs) => {
   const [show, setShow] = useState(false);
   useEffect(() => {
     promise.then(() => {
@@ -47,14 +56,15 @@ const ChartBox = ({ arrDate, arrTime, yAxis, promise }: IProprs) => {
   const time = arrTime.map((file) => {
     return file;
   });
+
   console.log(yAxis);
   const data = {
     labels: onXaxis,
     datasets: [
       {
-        label: 'aa',
+        label,
         data: yAxis,
-        borderColor: 'rgb(0, 47, 255)',
+        borderColor: color,
       },
     ],
   };

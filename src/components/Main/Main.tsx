@@ -51,13 +51,23 @@ const Main = ({ panel }: IProps) => {
   const arrV: string[] = [];
 
   const promise: Promise<void> = getData();
-
+  // rgb(255, 8, 0)
   return (
     <div className="main">
       <ChartBox
+      label={'Сила тока, A'}
         arrDate={arrDate}
         arrTime={arrTime}
         yAxis={arrAmp}
+        color={'rgb(0, 102, 255)'}
+        promise={promise}
+      />
+      <ChartBox
+      label={'Напряжение, V'}
+        arrDate={arrDate}
+        arrTime={arrTime}
+        yAxis={arrV}
+        color={'rgb(255, 8, 0)'}
         promise={promise}
       />
     </div>
