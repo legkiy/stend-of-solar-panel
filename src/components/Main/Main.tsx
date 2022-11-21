@@ -35,38 +35,43 @@ const Main = ({ panel }: IProps) => {
       const v2 = columns[6];
       const v3 = columns[7];
 
-      const amp = [amp1, amp2, amp3];
-      const volt = [v1, v2, v3];
+      const amp = [{ amp1 }, { amp2 }, { amp3 }];
+      const volt = [{ v1 }, { v2 }, { v3 }];
 
       arrDate.push(date);
       arrTime.push(time);
 
-      arrAmp.push(amp[panel]);
-      arrV.push(volt[panel]);
+      arrAmp.push(amp);
+      arrV.push(volt);
     });
   }
   const arrDate: string[] = [];
   const arrTime: string[] = [];
-  const arrAmp: string[] = [];
-  const arrV: string[] = [];
+  const arrAmp: Array<{}> = [];
+  const arrV: Array<{}> = [];
 
   const promise: Promise<void> = getData();
-  // rgb(255, 8, 0)
+
+  const check = arrAmp.map((file) => {
+    file[0];
+  });
+  console.log(check);
+
   return (
     <div className="main">
       <ChartBox
-      label={'Сила тока, A'}
+        label={'Сила тока, A'}
         arrDate={arrDate}
         arrTime={arrTime}
-        yAxis={arrAmp}
+        yAxis={arrAmp[panel]}
         color={'rgb(0, 102, 255)'}
         promise={promise}
       />
       <ChartBox
-      label={'Напряжение, V'}
+        label={'Напряжение, V'}
         arrDate={arrDate}
         arrTime={arrTime}
-        yAxis={arrV}
+        yAxis={arrV[panel]}
         color={'rgb(255, 8, 0)'}
         promise={promise}
       />

@@ -30,7 +30,7 @@ interface IProprs {
   label: string;
   arrDate: string[];
   arrTime: string[];
-  yAxis: string[];
+  yAxis: {};
   color: string;
   promise: Promise<void>;
 }
@@ -57,7 +57,6 @@ const ChartBox = ({
     return file;
   });
 
-  console.log(yAxis);
   const data = {
     labels: onXaxis,
     datasets: [
