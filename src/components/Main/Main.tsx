@@ -15,7 +15,7 @@ const Main = ({ panel }: IProps) => {
   let headers = new Headers();
   headers.set('Authorization', 'Basic ' + btoa(username + ':' + password));
 
-  async function getData() {
+  async function getData(el: number) {
     const res = await fetch(csv, {
       headers,
     });
@@ -35,27 +35,23 @@ const Main = ({ panel }: IProps) => {
       const v2 = columns[6];
       const v3 = columns[7];
 
-      const amp = [{ amp1 }, { amp2 }, { amp3 }];
-      const volt = [{ v1 }, { v2 }, { v3 }];
+      const amp = [amp1, amp2, amp3];
+      const volt = [v1, v2, v3];
 
       arrDate.push(date);
       arrTime.push(time);
 
-      arrAmp.push(amp);
-      arrV.push(volt);
+      arrAmp.push(amp[el]);
+      arrV.push(volt[el]);
     });
   }
   const arrDate: string[] = [];
   const arrTime: string[] = [];
-  const arrAmp: Array<{}> = [];
-  const arrV: Array<{}> = [];
+  const arrAmp: string[] = [];
+  const arrV: string[] = [];
 
-  const promise: Promise<void> = getData();
-
-  const check = arrAmp.map((file) => {
-    file[0];
-  });
-  console.log(check);
+  const promise: Promise<void> = getData(panel);
+  console.log(panel);
 
   return (
     <div className="main">
@@ -63,18 +59,18 @@ const Main = ({ panel }: IProps) => {
         label={'Сила тока, A'}
         arrDate={arrDate}
         arrTime={arrTime}
-        yAxis={arrAmp[panel]}
+        yAxis={arrAmp}
         color={'rgb(0, 102, 255)'}
         promise={promise}
       />
-      <ChartBox
+      {/* <ChartBox
         label={'Напряжение, V'}
         arrDate={arrDate}
         arrTime={arrTime}
-        yAxis={arrV[panel]}
+        yAxis={arrV}
         color={'rgb(255, 8, 0)'}
         promise={promise}
-      />
+      /> */}
     </div>
   );
 };

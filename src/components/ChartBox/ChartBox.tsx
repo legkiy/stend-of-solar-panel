@@ -49,6 +49,7 @@ const ChartBox = ({
       setShow(true);
     });
   }, [show, promise]);
+
   //date time amp1 amp2 amp3 v1 v2 v3
   const onXaxis = arrDate.map((file) => {
     return file;
