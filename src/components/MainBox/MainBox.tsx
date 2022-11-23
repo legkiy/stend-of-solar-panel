@@ -42,13 +42,13 @@ const Main = ({ panel }: IProps) => {
       arrTime.push(time);
 
       arrAmp.push(amp[el]);
-      arrV.push(volt[el]);
+      arrVolt.push(volt[el]);
     });
   }
   const arrDate: string[] = [];
   const arrTime: string[] = [];
   const arrAmp: string[] = [];
-  const arrV: string[] = [];
+  const arrVolt: string[] = [];
 
   const promise: Promise<void> = getData(panel);
   console.log(panel);
@@ -56,21 +56,21 @@ const Main = ({ panel }: IProps) => {
   return (
     <div className="mainBox">
       <ChartBox
+        type={'amp'}
         label={'Сила тока, A'}
         arrDate={arrDate}
         arrTime={arrTime}
         yAxis={arrAmp}
-        color={'rgb(0, 102, 255)'}
         promise={promise}
       />
-      {/* <ChartBox
+      <ChartBox
+        type={'volt'}
         label={'Напряжение, V'}
         arrDate={arrDate}
         arrTime={arrTime}
-        yAxis={arrV}
-        color={'rgb(255, 8, 0)'}
+        yAxis={arrVolt}
         promise={promise}
-      /> */}
+      />
     </div>
   );
 };

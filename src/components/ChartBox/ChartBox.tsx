@@ -11,6 +11,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import { color } from 'd3';
 
 ChartJS.register(
   CategoryScale,
@@ -27,20 +28,20 @@ ChartJS.defaults.font.size = 14;
 ChartJS.defaults.color = 'black';
 
 interface IProprs {
+  type: 'amp' | 'volt';
   label: string;
   arrDate: string[];
   arrTime: string[];
-  yAxis: {};
-  color: string;
+  yAxis: any;
   promise: Promise<void>;
 }
 
 const ChartBox = ({
+  type,
   label,
   arrDate,
   arrTime,
   yAxis,
-  color,
   promise,
 }: IProprs) => {
   // const [show, setShow] = useState(false);
@@ -54,6 +55,21 @@ const ChartBox = ({
     datasets: [],
   });
 
+  function typeOfChart(el: 'color' | 'max') {
+    let color: string;
+    let max: number;
+    if (el === 'color') {
+      if (type === 'amp') {
+        return (color = 'rgb(0, 102, 255)');
+      } else if (type === 'volt') {
+        return (color = 'rgb(255, 8, 0)');
+      }
+    }
+    if (el === 'max') {
+      if (type === 'amp') return (max = 10);
+      else if (type === 'volt') return (max = 45);
+    }
+  }
   useEffect(() => {
     setChartData({
       labels: arrDate,
@@ -61,7 +77,7 @@ const ChartBox = ({
         {
           label,
           data: yAxis,
-          borderColor: color,
+          borderColor: typeOfChart('color'),
         },
       ],
     });
@@ -69,31 +85,26 @@ const ChartBox = ({
 
   //date time amp1 amp2 amp3 v1 v2 v3
 
-  const data = {
-    labels: arrDate,
-    datasets: [
-      {
-        label,
-        data: yAxis,
-        borderColor: color,
-      },
-    ],
-  };
-
   const options: object = {
     responsive: true,
     plugins: {
       tooltip: {
         enabled: true,
-        // callbacks: {
-        //   footer: function (context: [{ dataIndex: number }]) {
-        //     const index = context[0].dataIndex;
-        //     return arrTime[index];
-        //   },
-        // },
+        callbacks: {
+          footer: function (context: [{ dataIndex: number }]) {
+            const index = context[0].dataIndex;
+            return arrTime[index];
+          },
+        },
       },
     },
     animation: false,
+    scales: {
+      y: {
+        max: typeOfChart('max'),
+        min: 0,
+      },
+    },
   };
   return (
     <div className="chartBox">
