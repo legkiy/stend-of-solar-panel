@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState , useEffect } from 'react';
 import ChartBox from '../ChartBox';
-import './Main.scss';
+import './MainBox.scss';
 
 interface IProps {
   panel: number;
@@ -54,7 +54,7 @@ const Main = ({ panel }: IProps) => {
   console.log(panel);
 
   return (
-    <div className="main">
+    <div className="mainBox">
       <ChartBox
         label={'Сила тока, A'}
         arrDate={arrDate}

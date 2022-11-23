@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import './ChartBox.scss';
 import {
   Chart as ChartJS,
@@ -43,23 +43,34 @@ const ChartBox = ({
   color,
   promise,
 }: IProprs) => {
-  const [show, setShow] = useState(false);
+  // const [show, setShow] = useState(false);
+  // useEffect(() => {
+  //   promise.then(() => {
+  //     setShow(true);
+  //   });
+  // }, [show, promise]);
+
+  const [chartData, setChartData] = useState<any>({
+    datasets: [],
+  });
+
   useEffect(() => {
-    promise.then(() => {
-      setShow(true);
+    setChartData({
+      labels: arrDate,
+      datasets: [
+        {
+          label,
+          data: yAxis,
+          borderColor: color,
+        },
+      ],
     });
-  }, [show, promise]);
+  },[]);
 
   //date time amp1 amp2 amp3 v1 v2 v3
-  const onXaxis = arrDate.map((file) => {
-    return file;
-  });
-  const time = arrTime.map((file) => {
-    return file;
-  });
 
   const data = {
-    labels: onXaxis,
+    labels: arrDate,
     datasets: [
       {
         label,
@@ -70,21 +81,22 @@ const ChartBox = ({
   };
 
   const options: object = {
+    responsive: true,
     plugins: {
       tooltip: {
         enabled: true,
-        callbacks: {
-          footer: function (context: [{ dataIndex: number }]) {
-            const index = context[0].dataIndex;
-            return time[index];
-          },
-        },
+        // callbacks: {
+        //   footer: function (context: [{ dataIndex: number }]) {
+        //     const index = context[0].dataIndex;
+        //     return arrTime[index];
+        //   },
+        // },
       },
     },
   };
   return (
     <div className="chartBox">
-      <Line data={data} options={options} />
+      <Line data={chartData} options={options} />
     </div>
   );
 };
