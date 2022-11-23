@@ -65,7 +65,7 @@ const ChartBox = ({
         },
       ],
     });
-  },[]);
+  });
 
   //date time amp1 amp2 amp3 v1 v2 v3
 
@@ -93,10 +93,11 @@ const ChartBox = ({
         // },
       },
     },
+    animation: false,
   };
   return (
     <div className="chartBox">
-      <Line data={chartData} options={options} />
+      {arrDate ? <Line data={chartData} options={options} /> : null}
     </div>
   );
 };
