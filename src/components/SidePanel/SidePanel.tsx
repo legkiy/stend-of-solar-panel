@@ -6,20 +6,18 @@ import { RootState } from '../../store/store';
 import { Dispatch, AnyAction } from '@reduxjs/toolkit';
 
 interface IProprs {
+  panel: number;
   setPanel: Dispatch<AnyAction>;
 }
 
-const SidePanel = ({ setPanel }: IProprs) => {
-  const dispatch = useDispatch();
-  const panel = useSelector((state: RootState) => state.panel.panelNumber);
-
+const SidePanel = ({ panel, setPanel }: IProprs) => {
   return (
     <div className="sidePanel">
       <div style={{ margin: '20px', background: 'black' }}>
         <select
           className="select"
           onChange={(e) => {
-            dispatch(setPanelNumber(e.target.value));
+            setPanel(setPanelNumber(e.target.value));
           }}
         >
           <option value={0}>0</option>

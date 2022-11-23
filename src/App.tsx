@@ -30,7 +30,7 @@ function App() {
 
   return (
     <div className="App">
-      <SidePanel setPanel={dispatch} />
+      <SidePanel panel={panel} setPanel={dispatch} />
       <Main panel={panel} />
     </div>
   );
