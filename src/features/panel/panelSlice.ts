@@ -1,18 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  panelNumber: 0,
+  selectPanel: 0,
 };
 
 export const panelSlice = createSlice({
   name: 'panel',
   initialState,
   reducers: {
-    setPanelNumber: (state, action) => {
-      state.panelNumber = action.payload;
+    setSelectPanel: (state, action) => {
+      state.selectPanel = action.payload;
     },
   },
 });
 
-export const { setPanelNumber } = panelSlice.actions;
+export const { setSelectPanel } = panelSlice.actions;
 export default panelSlice.reducer;

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Main from './components/MainBox';
 import SidePanel from './components/SidePanel';
 import { useDispatch, useSelector } from 'react-redux';
-import { setPanelNumber } from './features/panel/panelSlice';
+import { setSelectPanel } from './features/panel/panelSlice';
 import { RootState } from './store/store';
 
 //date time amp1 amp2 amp3 v1 v2 v3
@@ -26,7 +26,7 @@ function App() {
   let url = `https://files.isem.irk.ru/remote.php/dav/files/nikita.max/%D0%94%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5-%D1%81%D1%82%D0%B5%D0%BD%D0%B4%D0%B0/${dataFile}.csv`;
 
   const dispatch = useDispatch();
-  const panel = useSelector((state: RootState) => state.panel.panelNumber);
+  const panel = useSelector((state: RootState) => state.panel.selectPanel);
 
   return (
     <div className="App">
