@@ -14,9 +14,12 @@ const SidePanel = ({ panel, setPanel }: IProprs) => {
       <SideElement
         elementInside={
           <>
-            <Button options={1} setPanel={setPanel} />
-            <Button options={2} setPanel={setPanel} />
-            <Button options={3} setPanel={setPanel} />
+            <p>Select panel</p>
+            <div>
+              <Button options={1} setPanel={setPanel} panel={panel} />
+              <Button options={2} setPanel={setPanel} panel={panel} />
+              <Button options={3} setPanel={setPanel} panel={panel} />
+            </div>
           </>
         }
       />
