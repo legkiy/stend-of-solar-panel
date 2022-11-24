@@ -12,7 +12,7 @@ const Button = ({ options, setPanel, panel }: IProprsButton) => {
   const value = options - 1;
   return (
     <button
-      className={`button ${value === panel ? 'chosen' : ''}`}
+      className={`button ${value === panel ? 'chosen' : ' '}`}
       onClick={() => setPanel(setSelectPanel(value))}
     >
       {options}

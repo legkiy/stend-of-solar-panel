@@ -2,6 +2,7 @@ import './SidePanel.scss';
 import { Dispatch, AnyAction } from '@reduxjs/toolkit';
 import SideElement from './SideElement';
 import Button from '../Button';
+import isemLogo from './isemLogo.png';
 
 interface IProprs {
   panel: number;
@@ -11,6 +12,14 @@ interface IProprs {
 const SidePanel = ({ panel, setPanel }: IProprs) => {
   return (
     <div className="sidePanel">
+      <SideElement
+        elementInside={
+          <a className="isemLogo" href="https://isem.irk.ru/">
+            <img src={isemLogo} alt="logo"></img>
+            ИСЭМ СО РАН
+          </a>
+        }
+      />
       <SideElement
         elementInside={
           <>
