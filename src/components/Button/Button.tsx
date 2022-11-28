@@ -12,13 +12,13 @@ const Button = ({ options }: IProprsButton) => {
   const setPanel = useDispatch();
   const panel = useSelector((state: RootState) => state.panel.selectPanel);
 
-  const value = options - 1;
+  const value = options + 1;
   return (
     <button
-      className={`button ${value === panel ? 'chosen' : ' '}`}
-      onClick={() => setPanel(setSelectPanel(value))}
+      className={`button ${options === panel ? 'chosen' : ' '}`}
+      onClick={() => setPanel(setSelectPanel(options))}
     >
-      {options}
+      {value}
     </button>
   );
 };

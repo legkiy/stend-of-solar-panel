@@ -8,34 +8,33 @@ import { RootState } from '../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
 
 interface IPropsSelect {
-  options: { option: string; value: string }[];
+  options: Array<{ option: string; value: string }>;
 }
 
 const Select = ({ options }: IPropsSelect) => {
   const setActive = useDispatch();
-  const selectActive = useSelector(
+  const dropdawnActive = useSelector(
     (state: RootState) => state.dropdawn.dropdawnActive
   );
   const selectFile = useSelector(
     (state: RootState) => state.selectFile.selectFile
   );
-  const selectCsv = useSelector(
-    (state: RootState) => state.selectFile.selectCsv
-  );
 
   return (
     <>
       <div
-        className={`select ${selectActive && 'select-active'}`}
+        className={`select ${dropdawnActive && 'select-active'}`}
         onClick={() => {
-          setActive(setDropdawnActive(!selectActive));
+          setActive(setDropdawnActive(!dropdawnActive));
         }}
       >
         {selectFile}
         <span className="arrow-box">
           <svg className="arrow">
             <g
-              className={selectActive ? 'reverse-rotate-arrow' : 'rotate-arrow'}
+              className={
+                dropdawnActive ? 'reverse-rotate-arrow' : 'rotate-arrow'
+              }
             >
               <line
                 className="line"
@@ -59,7 +58,7 @@ const Select = ({ options }: IPropsSelect) => {
             </g>
           </svg>
         </span>
-        <div className={`dropdown ${selectActive ? 'dropdown-active' : ' '}`}>
+        <div className={`dropdown ${dropdawnActive ? 'dropdown-active' : ' '}`}>
           {options.map((item, index) => (
             <div
               className="dropdown-item"

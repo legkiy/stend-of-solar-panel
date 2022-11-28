@@ -40,9 +40,9 @@ const SidePanel = ({}: IProprs) => {
           <>
             <p>Выбор панели</p>
             <div>
+              <Button options={0} />
               <Button options={1} />
               <Button options={2} />
-              <Button options={3} />
             </div>
           </>
         }
