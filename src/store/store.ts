@@ -1,9 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import panelSlice from '../features/panel/panelSlice';
+import dropdownSlice from '../features/select/dropdownSlice';
+import selectFileSlice from '../features/select/selectFileSlice';
 
 const store = configureStore({
   reducer: {
     panel: panelSlice,
+    selectFile: selectFileSlice,
+    dropdawn: dropdownSlice,
   },
 });
 

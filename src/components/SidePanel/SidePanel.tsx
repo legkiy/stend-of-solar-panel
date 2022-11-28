@@ -1,13 +1,30 @@
 import './SidePanel.scss';
-import { Dispatch, AnyAction } from '@reduxjs/toolkit';
 import SideElement from './SideElement';
 import Button from '../Button';
 import isemLogo from './isemLogo.png';
+import Select from '../Select';
 
-interface IProprs {
-}
+interface IProprs {}
 
-const SidePanel = ({  }: IProprs) => {
+const SidePanel = ({}: IProprs) => {
+  const mounthFile = [];
+  const fileValue = [];
+  //цикл для перебора годов
+  for (let year = 2022; year < 2053; year++) {
+    //цикл для перебора месяцев внутри каждого года
+    for (let month = 1; month < 13; month++) {
+      //условие минимального значения
+      if (year === 2022 && month < 9) month = 9;
+      //условие для формата даты месяца меньше 10
+      let newMonth: string = String(month);
+      if (month < 10) newMonth = '0' + month;
+
+      const monthYear = newMonth + '.' + year;
+      const monthYearFile = year + '-' + newMonth;
+      mounthFile.push({ option: monthYear, value: monthYearFile });
+    }
+  }
+  console.log(mounthFile);
   return (
     <div className="sidePanel">
       <SideElement
@@ -27,6 +44,13 @@ const SidePanel = ({  }: IProprs) => {
               <Button options={2} />
               <Button options={3} />
             </div>
+          </>
+        }
+      />
+      <SideElement
+        elementInside={
+          <>
+            <Select options={mounthFile} />
           </>
         }
       />

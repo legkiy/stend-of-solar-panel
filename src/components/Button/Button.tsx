@@ -1,4 +1,3 @@
-import { AnyAction, Dispatch } from '@reduxjs/toolkit';
 import { setSelectPanel } from '../../features/panel/panelSlice';
 import { RootState } from '../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
