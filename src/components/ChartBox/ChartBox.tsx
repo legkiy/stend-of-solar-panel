@@ -64,7 +64,7 @@ const ChartBox = ({
   }
   if (type === 'volt') {
     color = 'rgb(255, 8, 0)';
-    yMax = 40;
+    yMax = 45;
   }
 
   useEffect(() => {
