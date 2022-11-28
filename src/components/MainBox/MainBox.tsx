@@ -1,12 +1,17 @@
 import ChartBox from '../ChartBox';
 import './MainBox.scss';
 import { RootState } from '../../store/store';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 interface IProps {}
 
 const Main = ({}: IProps) => {
-  let csv = '/2022-09.csv';
+  const setCvs = useDispatch();
+  const selectCsv = useSelector(
+    (state: RootState) => state.selectFile.selectCsv
+  );
+  console.log(selectCsv);
+  let csv = `/${selectCsv}.csv`;
   const panel = useSelector((state: RootState) => state.panel.selectPanel);
 
   const username: 'nikita.max' = 'nikita.max';

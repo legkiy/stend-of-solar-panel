@@ -1,5 +1,8 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import './ChartBox.scss';
+import { RootState } from '../../store/store';
+import { useSelector } from 'react-redux';
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,7 +14,6 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import { color } from 'd3';
 
 ChartJS.register(
   CategoryScale,
@@ -46,32 +48,25 @@ const ChartBox = ({
   promise,
   panel,
 }: IProprs) => {
-  // const [show, setShow] = useState(false);
-  // useEffect(() => {
-  //   promise.then(() => {
-  //     setShow(true);
-  //   });
-  // }, [show, promise]);
+  const selectCsv = useSelector(
+    (state: RootState) => state.selectFile.selectCsv
+  );
 
   const [chartData, setChartData] = useState<any>({
     datasets: [],
   });
 
-  function typeOfChart(el: 'color' | 'max') {
-    let color: string;
-    let max: number;
-    if (el === 'color') {
-      if (type === 'amp') {
-        return (color = 'rgb(0, 102, 255)');
-      } else if (type === 'volt') {
-        return (color = 'rgb(255, 8, 0)');
-      }
-    }
-    if (el === 'max') {
-      if (type === 'amp') return (max = 10);
-      else if (type === 'volt') return (max = 45);
-    }
+  let color: string;
+  let yMax;
+  if (type === 'amp') {
+    color = 'rgb(0, 102, 255)';
+    yMax = 10;
   }
+  if (type === 'volt') {
+    color = 'rgb(255, 8, 0)';
+    yMax = 40;
+  }
+
   useEffect(() => {
     promise.then(() => {
       setChartData({
@@ -80,12 +75,12 @@ const ChartBox = ({
           {
             label,
             data: yAxis,
-            borderColor: typeOfChart('color'),
+            borderColor: color,
           },
         ],
       });
     });
-  }, [panel]);
+  }, [panel, selectCsv]);
 
   //date time amp1 amp2 amp3 v1 v2 v3
 
@@ -104,7 +99,7 @@ const ChartBox = ({
     },
     scales: {
       y: {
-        max: typeOfChart('max'),
+        max: yMax,
         min: 0,
       },
     },

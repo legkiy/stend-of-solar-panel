@@ -8,9 +8,8 @@ interface IProprs {}
 
 const SidePanel = ({}: IProprs) => {
   const mounthFile = [];
-  const fileValue = [];
   //цикл для перебора годов
-  for (let year = 2022; year < 2053; year++) {
+  for (let year = 2022; year < 2051; year++) {
     //цикл для перебора месяцев внутри каждого года
     for (let month = 1; month < 13; month++) {
       //условие минимального значения
@@ -35,10 +34,11 @@ const SidePanel = ({}: IProprs) => {
           </a>
         }
       />
+      <SideElement elementInside={<Select options={mounthFile} />} />
       <SideElement
         elementInside={
           <>
-            <p>Select panel</p>
+            <p>Выбор панели</p>
             <div>
               <Button options={1} />
               <Button options={2} />
@@ -47,14 +47,6 @@ const SidePanel = ({}: IProprs) => {
           </>
         }
       />
-      <SideElement
-        elementInside={
-          <>
-            <Select options={mounthFile} />
-          </>
-        }
-      />
-      <div>{}</div>
     </div>
   );
 };

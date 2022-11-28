@@ -1,17 +1,28 @@
 $selectShadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.507);
+$openDropdown: all 0.2s;
+
 .select {
   position: relative;
+  display: flex;
   min-width: 100px;
   height: 24px;
+  margin: auto;
   border-radius: 8px;
+  padding: 0 3px;
   background-color: white;
   box-shadow: $selectShadow;
-  margin: auto;
   cursor: pointer;
+  transition: $openDropdown;
 }
+
+.select-active {
+  border-radius: 8px 8px 0 0;
+}
+
 .dropdown {
   position: absolute;
-  top: 30px;
+  top: 23px;
+  left: 0;
   width: 100%;
   max-height: 0;
   text-align: left;
@@ -19,18 +30,49 @@ $selectShadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.507);
   background-color: white;
   border-radius: 0 0 8px 8px;
   box-shadow: $selectShadow;
+  transition: $openDropdown;
   :hover {
     background-color: rgba(187, 187, 187, 0.5);
   }
 }
+
 .dropdown-active {
   max-height: 400px;
+  top: 27px;
+  transition: $openDropdown;
 }
+
 .dropdown-item {
   padding: 3px;
 }
+
 .arrow-box {
   display: flex;
+  margin: auto;
   margin-right: 0;
   justify-content: center;
+}
+
+.arrow {
+  color: #00000081;
+  height: 14px;
+  width: 14px;
+}
+
+.rotate-arrow {
+  transform: rotate(0deg);
+  transform-origin: center center;
+  border: 1px solid;
+  transition: all 0.2s;
+}
+
+.reverse-rotate-arrow {
+  transform: rotate(180deg);
+  transform-origin: center center;
+  border: 1px solid;
+  transition: all 0.2s;
+}
+
+.line {
+  transition: $openDropdown;
 }
