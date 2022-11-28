@@ -104,9 +104,10 @@ const ChartBox = ({
       },
     },
   };
+
   return (
     <div className="chartBox">
-      {arrDate ? <Line data={chartData} options={options} /> : null}
+      {<Line data={chartData} options={options} />}
     </div>
   );
 };

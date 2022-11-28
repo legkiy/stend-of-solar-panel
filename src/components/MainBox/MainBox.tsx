@@ -24,6 +24,8 @@ const Main = ({}: IProps) => {
     const res = await fetch(csv, {
       headers,
     });
+    console.log(res);
+
     const data = await res.text();
     const table = data.split(/\n/);
     const tableLenght = table.length - 2;
@@ -56,7 +58,6 @@ const Main = ({}: IProps) => {
   const arrVolt: string[] = [];
 
   const promise: Promise<void> = getData(panel);
-
   return (
     <div className="mainBox">
       <ChartBox

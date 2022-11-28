@@ -4,7 +4,12 @@ $spacebitwin: 20px;
   background-color: rgb(194, 232, 255);
   width: calc(50% - $spacebitwin);
   height: fit-content;
-  border-radius: 40px;
+  min-height: 315px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 35px;
   padding: 5px;
   margin: 0 $spacebitwin 0 0;
+  transition: all 1s;
 }

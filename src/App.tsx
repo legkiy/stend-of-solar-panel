@@ -5,16 +5,6 @@ import Main from './components/MainBox';
 import SidePanel from './components/SidePanel';
 
 //date time amp1 amp2 amp3 v1 v2 v3
-export interface IMapFile {
-  date: string;
-  time: string;
-  amp1: string;
-  amp2: string;
-  amp3: string;
-  v1: string;
-  v2: string;
-  v3: string;
-}
 
 function App() {
   const [dataFile, setDataFile] = useState('2022-09');
