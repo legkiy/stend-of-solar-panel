@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
 import ChartBox from '../ChartBox';
 import './MainBox.scss';
+import { RootState } from '../../store/store';
+import { useSelector } from 'react-redux';
 
-interface IProps {
-  panel: number;
-}
+interface IProps {}
 
-const Main = ({ panel }: IProps) => {
+const Main = ({}: IProps) => {
   let csv = '/2022-09.csv';
+  const panel = useSelector((state: RootState) => state.panel.selectPanel);
 
   const username: 'nikita.max' = 'nikita.max';
   const password: 'E4DqvJacNxSW' = 'E4DqvJacNxSW';
@@ -51,7 +51,6 @@ const Main = ({ panel }: IProps) => {
   const arrVolt: string[] = [];
 
   const promise: Promise<void> = getData(panel);
-  console.log(panel);
 
   return (
     <div className="mainBox">
@@ -62,6 +61,7 @@ const Main = ({ panel }: IProps) => {
         arrTime={arrTime}
         yAxis={arrAmp}
         promise={promise}
+        panel={panel}
       />
       <ChartBox
         type={'volt'}
@@ -70,6 +70,7 @@ const Main = ({ panel }: IProps) => {
         arrTime={arrTime}
         yAxis={arrVolt}
         promise={promise}
+        panel={panel}
       />
     </div>
   );

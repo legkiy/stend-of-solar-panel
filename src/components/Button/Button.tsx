@@ -1,14 +1,18 @@
 import { AnyAction, Dispatch } from '@reduxjs/toolkit';
 import { setSelectPanel } from '../../features/panel/panelSlice';
+import { RootState } from '../../store/store';
+import { useDispatch, useSelector } from 'react-redux';
+
 import './Button.scss';
 
 interface IProprsButton {
   options: number;
-  setPanel: Dispatch<AnyAction>;
-  panel: number;
 }
 
-const Button = ({ options, setPanel, panel }: IProprsButton) => {
+const Button = ({ options }: IProprsButton) => {
+  const setPanel = useDispatch();
+  const panel = useSelector((state: RootState) => state.panel.selectPanel);
+
   const value = options - 1;
   return (
     <button

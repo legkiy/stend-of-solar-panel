@@ -5,11 +5,9 @@ import Button from '../Button';
 import isemLogo from './isemLogo.png';
 
 interface IProprs {
-  panel: number;
-  setPanel: Dispatch<AnyAction>;
 }
 
-const SidePanel = ({ panel, setPanel }: IProprs) => {
+const SidePanel = ({  }: IProprs) => {
   return (
     <div className="sidePanel">
       <SideElement
@@ -25,14 +23,14 @@ const SidePanel = ({ panel, setPanel }: IProprs) => {
           <>
             <p>Select panel</p>
             <div>
-              <Button options={1} setPanel={setPanel} panel={panel} />
-              <Button options={2} setPanel={setPanel} panel={panel} />
-              <Button options={3} setPanel={setPanel} panel={panel} />
+              <Button options={1} />
+              <Button options={2} />
+              <Button options={3} />
             </div>
           </>
         }
       />
-      <div>{panel}</div>
+      <div>{}</div>
     </div>
   );
 };

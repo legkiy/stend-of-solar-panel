@@ -34,6 +34,7 @@ interface IProprs {
   arrTime: string[];
   yAxis: any;
   promise: Promise<void>;
+  panel: number;
 }
 
 const ChartBox = ({
@@ -43,6 +44,7 @@ const ChartBox = ({
   arrTime,
   yAxis,
   promise,
+  panel,
 }: IProprs) => {
   // const [show, setShow] = useState(false);
   // useEffect(() => {
@@ -71,17 +73,19 @@ const ChartBox = ({
     }
   }
   useEffect(() => {
-    setChartData({
-      labels: arrDate,
-      datasets: [
-        {
-          label,
-          data: yAxis,
-          borderColor: typeOfChart('color'),
-        },
-      ],
+    promise.then(() => {
+      setChartData({
+        labels: arrDate,
+        datasets: [
+          {
+            label,
+            data: yAxis,
+            borderColor: typeOfChart('color'),
+          },
+        ],
+      });
     });
-  });
+  }, [panel]);
 
   //date time amp1 amp2 amp3 v1 v2 v3
 
@@ -98,7 +102,6 @@ const ChartBox = ({
         },
       },
     },
-    animation: false,
     scales: {
       y: {
         max: typeOfChart('max'),
