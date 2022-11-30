@@ -23,7 +23,6 @@ const SidePanel = ({}: IProprs) => {
       mounthFile.push({ option: monthYear, value: monthYearFile });
     }
   }
-  console.log(mounthFile);
   return (
     <div className="sidePanel">
       <SideElement
@@ -47,6 +46,7 @@ const SidePanel = ({}: IProprs) => {
           </>
         }
       />
+      <SideElement elementInside={<p>FAQ?</p>} />
     </div>
   );
 };

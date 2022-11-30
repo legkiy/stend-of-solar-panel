@@ -14,8 +14,10 @@ function App() {
 
   return (
     <div className="App">
-      <SidePanel />
-      <Main />
+      <div className="myApp">
+        <SidePanel />
+        <Main />
+      </div>
     </div>
   );
 }

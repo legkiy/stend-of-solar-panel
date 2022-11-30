@@ -1,8 +1,9 @@
 $spacebitwin: 20px;
 
-.chartBox {
+.chart {
   background-color: rgb(194, 232, 255);
   width: calc(50% - $spacebitwin);
+  justify-content: space-between;
   height: fit-content;
   min-height: 315px;
   display: flex;
@@ -10,6 +11,7 @@ $spacebitwin: 20px;
   align-items: center;
   border-radius: 35px;
   padding: 5px;
-  margin: 0 $spacebitwin 0 0;
-  transition: all 1s;
+}
+.chart:first-child {
+  margin-right: 20px;
 }

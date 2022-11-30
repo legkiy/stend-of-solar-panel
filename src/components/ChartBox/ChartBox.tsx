@@ -30,11 +30,11 @@ ChartJS.defaults.font.size = 14;
 ChartJS.defaults.color = 'black';
 
 interface IProprs {
-  type: 'amp' | 'volt';
+  type: 'amp' | 'volt' | 'watt';
   label: string;
   arrDate: string[];
   arrTime: string[];
-  yAxis: any;
+  yAxis: number[];
   promise: Promise<void>;
   panel: number;
 }
@@ -59,12 +59,16 @@ const ChartBox = ({
   let color: string;
   let yMax;
   if (type === 'amp') {
-    color = 'rgb(0, 102, 255)';
+    color = 'rgb(255, 8, 0)';
     yMax = 10;
   }
   if (type === 'volt') {
-    color = 'rgb(255, 8, 0)';
+    color = 'rgb(0, 102, 255)';
     yMax = 45;
+  }
+  if (type === 'watt') {
+    color = 'rgb(120, 0, 255)';
+    yMax = 300;
   }
 
   useEffect(() => {
@@ -106,9 +110,7 @@ const ChartBox = ({
   };
 
   return (
-    <div className="chartBox">
-      {<Line data={chartData} options={options} />}
-    </div>
+    <div className="chart">{<Line data={chartData} options={options} />}</div>
   );
 };
 export default ChartBox;

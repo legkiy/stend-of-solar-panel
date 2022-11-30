@@ -24,7 +24,6 @@ const Main = ({}: IProps) => {
     const res = await fetch(csv, {
       headers,
     });
-    console.log(res);
 
     const data = await res.text();
     const table = data.split(/\n/);
@@ -35,49 +34,66 @@ const Main = ({}: IProps) => {
       const date = columns[0];
       const time = columns[1];
 
-      const amp1 = columns[2];
-      const amp2 = columns[3];
-      const amp3 = columns[4];
-      const v1 = columns[5];
-      const v2 = columns[6];
-      const v3 = columns[7];
+      const amp1 = +columns[2];
+      const amp2 = +columns[3];
+      const amp3 = +columns[4];
+      const v1 = +columns[5];
+      const v2 = +columns[6];
+      const v3 = +columns[7];
 
       const amp = [amp1, amp2, amp3];
       const volt = [v1, v2, v3];
+      const watt = amp.map((value, index) => value * volt[index]);
 
       arrDate.push(date);
       arrTime.push(time);
 
       arrAmp.push(amp[el]);
       arrVolt.push(volt[el]);
+      arrWatt.push(watt[el]);
     });
   }
   const arrDate: string[] = [];
   const arrTime: string[] = [];
-  const arrAmp: string[] = [];
-  const arrVolt: string[] = [];
+  const arrAmp: number[] = [];
+  const arrVolt: number[] = [];
+  const arrWatt: number[] = [];
 
   const promise: Promise<void> = getData(panel);
+  console.log(arrWatt);
   return (
     <div className="mainBox">
-      <ChartBox
-        type={'amp'}
-        label={'Сила тока, A'}
-        arrDate={arrDate}
-        arrTime={arrTime}
-        yAxis={arrAmp}
-        promise={promise}
-        panel={panel}
-      />
-      <ChartBox
-        type={'volt'}
-        label={'Напряжение, V'}
-        arrDate={arrDate}
-        arrTime={arrTime}
-        yAxis={arrVolt}
-        promise={promise}
-        panel={panel}
-      />
+      <div className="chart-box">
+        <ChartBox
+          type={'amp'}
+          label={'Сила тока, A'}
+          arrDate={arrDate}
+          arrTime={arrTime}
+          yAxis={arrAmp}
+          promise={promise}
+          panel={panel}
+        />
+        <ChartBox
+          type={'volt'}
+          label={'Напряжение, V'}
+          arrDate={arrDate}
+          arrTime={arrTime}
+          yAxis={arrVolt}
+          promise={promise}
+          panel={panel}
+        />
+      </div>
+      <div className="chart-box">
+        <ChartBox
+          type={'watt'}
+          label={'Мощность, W'}
+          arrDate={arrDate}
+          arrTime={arrTime}
+          yAxis={arrWatt}
+          promise={promise}
+          panel={panel}
+        />
+      </div>
     </div>
   );
 };

@@ -14,8 +14,7 @@ body {
 }
 body,
 html,
-#root,
-.App {
+#root {
   height: 100%;
 }
 

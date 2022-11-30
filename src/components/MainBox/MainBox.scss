@@ -1,5 +1,10 @@
 .mainBox {
+  width: 100%;
+}
+
+.chart-box {
   display: flex;
-  width: calc(85% - 40px);
-  margin: 20px 0;
+}
+.chart-box:first-child{
+  margin-bottom: 20px;
 }
