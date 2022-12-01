@@ -2,6 +2,7 @@ import ChartBox from '../ChartBox';
 import './MainBox.scss';
 import { RootState } from '../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
+import axios from '@nextcloud/axios';
 
 interface IProps {}
 
@@ -10,9 +11,14 @@ const Main = ({}: IProps) => {
   const selectCsv = useSelector(
     (state: RootState) => state.selectFile.selectCsv
   );
-  console.log(selectCsv);
-  let csv = `/${selectCsv}.csv`;
   const panel = useSelector((state: RootState) => state.panel.selectPanel);
+
+  let csv = `/${selectCsv}.csv`;
+
+  // let url = `https://files.isem.irk.ru/remote.php/dav/files/nikita.max/%D0%94%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5-%D1%81%D1%82%D0%B5%D0%BD%D0%B4%D0%B0/${selectCsv}.csv`;
+
+  let url =
+    'https://files.isem.irk.ru/index.php/apps/files/?dir=/%D0%94%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5-%D1%81%D1%82%D0%B5%D0%BD%D0%B4%D0%B0&openfile=172775';
 
   const username: 'nikita.max' = 'nikita.max';
   const password: 'E4DqvJacNxSW' = 'E4DqvJacNxSW';
@@ -21,10 +27,10 @@ const Main = ({}: IProps) => {
   headers.set('Authorization', 'Basic ' + btoa(username + ':' + password));
 
   async function getData(el: number) {
-    const res = await fetch(csv, {
+    const res = await fetch(url, {
+      mode: 'no-cors',
       headers,
     });
-
     const data = await res.text();
     const table = data.split(/\n/);
     const tableLenght = table.length - 2;
@@ -60,7 +66,6 @@ const Main = ({}: IProps) => {
   const arrWatt: number[] = [];
 
   const promise: Promise<void> = getData(panel);
-  console.log(arrWatt);
   return (
     <div className="mainBox">
       <div className="chart-box">
