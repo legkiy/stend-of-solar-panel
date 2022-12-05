@@ -2,7 +2,7 @@ import ChartBox from '../ChartBox';
 import './MainBox.scss';
 import { RootState } from '../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from '@nextcloud/axios';
+import * as d3 from 'd3';
 
 interface IProps {}
 
@@ -13,7 +13,7 @@ const Main = ({}: IProps) => {
   );
   const panel = useSelector((state: RootState) => state.panel.selectPanel);
 
-  let csv = `/${selectCsv}.csv`;
+  let csv = `./${selectCsv}.csv`;
 
   // let url = `https://files.isem.irk.ru/remote.php/dav/files/nikita.max/%D0%94%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5-%D1%81%D1%82%D0%B5%D0%BD%D0%B4%D0%B0/${selectCsv}.csv`;
 
@@ -26,8 +26,15 @@ const Main = ({}: IProps) => {
   let headers = new Headers();
   headers.set('Authorization', 'Basic ' + btoa(username + ':' + password));
 
+  // let d3arr: any = [];
+  // const cavfile = `./${selectCsv}.csv`;
+  // const d3data: any = d3.csv(cavfile, (file: any): any => {
+  //   d3arr.push(file);
+  // });
+  // console.log(d3arr);
+
   async function getData(el: number) {
-    const res = await fetch(url, {
+    const res = await fetch(csv, {
       mode: 'no-cors',
       headers,
     });
