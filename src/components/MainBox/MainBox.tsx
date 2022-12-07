@@ -8,9 +8,7 @@ interface IProps {}
 
 const Main = ({}: IProps) => {
   const setCvs = useDispatch();
-  const selectCsv = useSelector(
-    (state: RootState) => state.selectFile.selectCsv
-  );
+  const selectCsv = useSelector((state: RootState) => state.selectFile.selectCsv);
   const panel = useSelector((state: RootState) => state.panel.selectPanel);
 
   let csv = `./${selectCsv}.csv`;
@@ -56,7 +54,8 @@ const Main = ({}: IProps) => {
 
       const amp = [amp1, amp2, amp3];
       const volt = [v1, v2, v3];
-      const watt = amp.map((value, index) => value * volt[index]);
+      const watt = amp.map((value, index) => value * volt[index]); //считаем мощность панелей умножая каждый эллемент amp на volt
+      const prod = watt.map((value) => value / 0.1848); //получаем приход солнечной радицаии учитывая КПД панелей
 
       arrDate.push(date);
       arrTime.push(time);
@@ -64,6 +63,7 @@ const Main = ({}: IProps) => {
       arrAmp.push(amp[el]);
       arrVolt.push(volt[el]);
       arrWatt.push(watt[el]);
+      arrProd.push(prod[el]);
     });
   }
   const arrDate: string[] = [];
@@ -71,8 +71,11 @@ const Main = ({}: IProps) => {
   const arrAmp: number[] = [];
   const arrVolt: number[] = [];
   const arrWatt: number[] = [];
+  const arrProd: number[] = [];
 
   const promise: Promise<void> = getData(panel);
+  console.log(arrProd);
+
   return (
     <div className="mainBox">
       <div className="chart-box">
@@ -99,9 +102,11 @@ const Main = ({}: IProps) => {
         <ChartBox
           type={'watt'}
           label={'Мощность, W'}
+          label2={'Радиация, W'}
           arrDate={arrDate}
           arrTime={arrTime}
           yAxis={arrWatt}
+          y2Axis={arrProd}
           promise={promise}
           panel={panel}
         />

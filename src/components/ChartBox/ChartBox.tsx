@@ -15,15 +15,7 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 ChartJS.defaults.font.family = 'Roboto';
 ChartJS.defaults.font.size = 14;
@@ -32,9 +24,11 @@ ChartJS.defaults.color = 'black';
 interface IProprs {
   type: 'amp' | 'volt' | 'watt';
   label: string;
+  label2?: string;
   arrDate: string[];
   arrTime: string[];
   yAxis: number[];
+  y2Axis?: number[];
   promise: Promise<void>;
   panel: number;
 }
@@ -42,21 +36,24 @@ interface IProprs {
 const ChartBox = ({
   type,
   label,
+  label2,
   arrDate,
   arrTime,
   yAxis,
+  y2Axis,
   promise,
   panel,
 }: IProprs) => {
-  const selectCsv = useSelector(
-    (state: RootState) => state.selectFile.selectCsv
-  );
+  const selectCsv = useSelector((state: RootState) => state.selectFile.selectCsv);
+
+  const chartNum = 2;
 
   const [chartData, setChartData] = useState<any>({
     datasets: [],
   });
 
   let color: string;
+  let color2: string;
   let yMax;
   if (type === 'amp') {
     color = 'rgb(255, 8, 0)';
@@ -68,21 +65,41 @@ const ChartBox = ({
   }
   if (type === 'watt') {
     color = 'rgb(120, 0, 255)';
-    yMax = 300;
+    color2 = 'orange';
+    yMax = 1000;
   }
 
   useEffect(() => {
     promise.then(() => {
-      setChartData({
-        labels: arrDate,
-        datasets: [
-          {
-            label,
-            data: yAxis,
-            borderColor: color,
-          },
-        ],
-      });
+      if (type === 'watt') {
+        setChartData({
+          labels: arrDate,
+          datasets: [
+            {
+              label,
+              data: yAxis,
+              borderColor: color,
+            },
+            {
+              label: label2,
+              data: y2Axis,
+              borderColor: color2,
+            },
+          ],
+        });
+      }
+      if (type !== 'watt') {
+        setChartData({
+          labels: arrDate,
+          datasets: [
+            {
+              label,
+              data: yAxis,
+              borderColor: color,
+            },
+          ],
+        });
+      }
     });
   }, [panel, selectCsv]);
 
@@ -109,8 +126,6 @@ const ChartBox = ({
     },
   };
 
-  return (
-    <div className="chart">{<Line data={chartData} options={options} />}</div>
-  );
+  return <div className="chart">{<Line data={chartData} options={options} />}</div>;
 };
 export default ChartBox;
