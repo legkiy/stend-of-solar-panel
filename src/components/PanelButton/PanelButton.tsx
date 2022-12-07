@@ -2,20 +2,20 @@ import { setSelectPanel } from '../../features/panel/panelSlice';
 import { RootState } from '../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
 
-import './Button.scss';
+import './PanelButton.scss';
 
-interface IProprsButton {
+interface IProprsPanelButton {
   options: number;
 }
 
-const Button = ({ options }: IProprsButton) => {
+const Button = ({ options }: IProprsPanelButton) => {
   const setPanel = useDispatch();
   const panel = useSelector((state: RootState) => state.panel.selectPanel);
 
   const value = options + 1;
   return (
     <button
-      className={`button ${options === panel ? 'chosen' : ' '}`}
+      className={`PanelButton ${options === panel ? 'chosen' : ' '}`}
       onClick={() => setPanel(setSelectPanel(options))}
     >
       {value}

@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  selectFile: '09.2022',
-  selectCsv: '2022-09',
+  selectFile: '08.2022',
+  selectCsv: '2022-08',
 };
 
 export const selectFileSlice = createSlice({

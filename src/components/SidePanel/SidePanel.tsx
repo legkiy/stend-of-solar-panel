@@ -1,6 +1,6 @@
 import './SidePanel.scss';
 import SideElement from './SideElement';
-import Button from '../Button';
+import PanelButton from '../PanelButton';
 import isemLogo from './isemLogo.png';
 import Select from '../Select';
 
@@ -13,7 +13,7 @@ const SidePanel = ({}: IProprs) => {
     //цикл для перебора месяцев внутри каждого года
     for (let month = 1; month < 13; month++) {
       //условие минимального значения
-      if (year === 2022 && month < 9) month = 9;
+      if (year === 2022 && month < 8) month = 8;
       //условие для формата даты месяца меньше 10
       let newMonth: string = String(month);
       if (month < 10) newMonth = '0' + month;
@@ -39,9 +39,9 @@ const SidePanel = ({}: IProprs) => {
           <>
             <p>Выбор панели</p>
             <div>
-              <Button options={0} />
-              <Button options={1} />
-              <Button options={2} />
+              <PanelButton options={0} />
+              <PanelButton options={1} />
+              <PanelButton options={2} />
             </div>
           </>
         }

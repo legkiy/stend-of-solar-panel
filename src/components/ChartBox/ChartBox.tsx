@@ -46,8 +46,6 @@ const ChartBox = ({
 }: IProprs) => {
   const selectCsv = useSelector((state: RootState) => state.selectFile.selectCsv);
 
-  const chartNum = 2;
-
   const [chartData, setChartData] = useState<any>({
     datasets: [],
   });
@@ -66,7 +64,7 @@ const ChartBox = ({
   if (type === 'watt') {
     color = 'rgb(120, 0, 255)';
     color2 = 'orange';
-    yMax = 1000;
+    yMax = 2000;
   }
 
   useEffect(() => {
