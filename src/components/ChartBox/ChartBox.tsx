@@ -64,7 +64,7 @@ const ChartBox = ({
   if (type === 'watt') {
     color = 'rgb(120, 0, 255)';
     color2 = 'orange';
-    yMax = 2000;
+    yMax = 1000;
   }
 
   useEffect(() => {

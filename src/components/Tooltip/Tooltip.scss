@@ -2,20 +2,22 @@
   position: absolute;
   display: flex;
   text-align: left;
-  left: 8vw;
-  top: -100%;
+  top: -37px;
   height: 100px;
   margin: 5%;
   border-radius: 25px;
   align-items: center;
   overflow: hidden;
   white-space: nowrap;
-  transition: width 0.5s;
+  transition: all 0.3s;
   background-color: rgba(241, 251, 255, 0.918);
 }
 .tooltipDeactive {
+  left: 110px;
+  color: rgba(255, 255, 255, 0);
   width: 0;
 }
 .tooltipActive {
+  left: 145px;
   width: 500px;
 }

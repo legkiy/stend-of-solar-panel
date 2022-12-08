@@ -54,7 +54,7 @@ const Main = ({}: IProps) => {
       const amp = [amp1, amp2, amp3];
       const volt = [v1, v2, v3];
       const watt = amp.map((value, index) => value * volt[index]); //считаем мощность панелей умножая каждый эллемент amp на volt
-      const prod = watt.map((value) => value / 0.1848); //получаем приход солнечной радицаии учитывая КПД панелей
+      const prod = watt.map((value) => value / (0.1848 * 1.64 * 0.99)); //получаем приход солнечной радицаии учитывая КПД панелей
 
       arrDate.push(date);
       arrTime.push(time);
@@ -101,7 +101,7 @@ const Main = ({}: IProps) => {
         <ChartBox
           type={'watt'}
           label={'Мощность, W'}
-          label2={'Радиация, W'}
+          label2={'Радиация, W/м2'}
           arrDate={arrDate}
           arrTime={arrTime}
           yAxis={arrWatt}

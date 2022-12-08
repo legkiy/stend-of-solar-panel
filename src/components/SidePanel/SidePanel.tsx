@@ -53,13 +53,15 @@ const SidePanel = () => {
       />
       <SideElement
         elementInside={
-          <div
-            className="faq interactive-el"
-            onClick={() => dispatch(setTooltipVisible(!tooltipVisible))}
-          >
-            <p>FAQ</p>
-            <Tooltip discription={'вставить ссылки на статьи и опиание'} />
-          </div>
+          <>
+            <div
+              className="faq interactive-el"
+              onClick={() => dispatch(setTooltipVisible(!tooltipVisible))}
+            >
+              <p>FAQ</p>
+              <Tooltip discription={'вставить ссылки на статьи и опиание'} />
+            </div>
+          </>
         }
       />
     </div>
