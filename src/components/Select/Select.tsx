@@ -16,7 +16,7 @@ const Select = ({ options }: IPropsSelect) => {
   return (
     <>
       <div
-        className={`select ${dropdownActive && 'select-active'}`}
+        className={`select interactive-el ${dropdownActive && 'select-active'}`}
         onClick={() => {
           dispatch(setDropdownActive(!dropdownActive));
         }}

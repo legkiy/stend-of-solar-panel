@@ -9,3 +9,12 @@
   height: calc(100% - 40px);
   width: 100%;
 }
+.interactive-el {
+  background-color: white;
+  box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.507);
+  border-radius: 8px;
+  padding: 3px;
+}
+.interactive-el:hover {
+  background-color: rgba(187, 187, 187, 0.5);
+}
