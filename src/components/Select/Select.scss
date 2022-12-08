@@ -13,6 +13,7 @@ $openDropdown: all 0.2s;
   box-shadow: $selectShadow;
   cursor: pointer;
   transition: $openDropdown;
+  z-index: 1;
 }
 
 .select-active {

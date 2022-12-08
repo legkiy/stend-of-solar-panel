@@ -1,0 +1,13 @@
+.tooltip {
+  position: absolute;
+  left: 310%;
+  top: 0;
+  width: 600px;
+  background-color: antiquewhite;
+}
+.tooltipDeactive {
+  visibility: hidden;
+}
+.tooltipActive {
+  visibility: visible;
+}

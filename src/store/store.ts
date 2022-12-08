@@ -2,13 +2,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import panelSlice from '../features/panel/panelSlice';
 import dropdownSlice from '../features/select/dropdownSlice';
 import selectFileSlice from '../features/select/selectFileSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import tooltipSlice from '../features/tooltip/tooltipSlice';
 
 const store = configureStore({
   reducer: {
     panel: panelSlice,
     selectFile: selectFileSlice,
-    dropdawn: dropdownSlice,
+    dropdown: dropdownSlice,
+    tooltip: tooltipSlice,
   },
 });
 

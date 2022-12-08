@@ -7,7 +7,6 @@ import * as d3 from 'd3';
 interface IProps {}
 
 const Main = ({}: IProps) => {
-  const setCvs = useDispatch();
   const selectCsv = useSelector((state: RootState) => state.selectFile.selectCsv);
   const panel = useSelector((state: RootState) => state.panel.selectPanel);
 

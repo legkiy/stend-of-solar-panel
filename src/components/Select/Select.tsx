@@ -1,9 +1,6 @@
 import './Select.scss';
-import { setDropdawnActive } from '../../features/select/dropdownSlice';
-import {
-  setSelectFile,
-  setSelectCsv,
-} from '../../features/select/selectFileSlice';
+import { setDropdownActive } from '../../features/select/dropdownSlice';
+import { setSelectFile, setSelectCsv } from '../../features/select/selectFileSlice';
 import { RootState } from '../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -12,30 +9,22 @@ interface IPropsSelect {
 }
 
 const Select = ({ options }: IPropsSelect) => {
-  const setActive = useDispatch();
-  const dropdawnActive = useSelector(
-    (state: RootState) => state.dropdawn.dropdawnActive
-  );
-  const selectFile = useSelector(
-    (state: RootState) => state.selectFile.selectFile
-  );
+  const dispatch = useDispatch();
+  const dropdownActive = useSelector((state: RootState) => state.dropdown.dropdownActive);
+  const selectFile = useSelector((state: RootState) => state.selectFile.selectFile);
 
   return (
     <>
       <div
-        className={`select ${dropdawnActive && 'select-active'}`}
+        className={`select ${dropdownActive && 'select-active'}`}
         onClick={() => {
-          setActive(setDropdawnActive(!dropdawnActive));
+          dispatch(setDropdownActive(!dropdownActive));
         }}
       >
         {selectFile}
         <span className="arrow-box">
           <svg className="arrow">
-            <g
-              className={
-                dropdawnActive ? 'reverse-rotate-arrow' : 'rotate-arrow'
-              }
-            >
+            <g className={dropdownActive ? 'reverse-rotate-arrow' : 'rotate-arrow'}>
               <line
                 className="line"
                 x1="1"
@@ -58,14 +47,14 @@ const Select = ({ options }: IPropsSelect) => {
             </g>
           </svg>
         </span>
-        <div className={`dropdown ${dropdawnActive ? 'dropdown-active' : ' '}`}>
+        <div className={`dropdown ${dropdownActive ? 'dropdown-active' : ' '}`}>
           {options.map((item, index) => (
             <div
               className="dropdown-item"
               key={index}
               onClick={() => {
-                setActive(setSelectFile(item.option));
-                setActive(setSelectCsv(item.value));
+                dispatch(setSelectFile(item.option));
+                dispatch(setSelectCsv(item.value));
               }}
             >
               {item.option}

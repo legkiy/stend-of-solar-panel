@@ -3,10 +3,15 @@ import SideElement from './SideElement';
 import PanelButton from '../PanelButton';
 import isemLogo from './isemLogo.png';
 import Select from '../Select';
+import Tooltip from '../Tooltip';
+import { useDispatch, useSelector } from 'react-redux';
+import { setTooltipVisible } from '../../features/tooltip/tooltipSlice';
+import { RootState } from '../../store/store';
 
-interface IProprs {}
-
-const SidePanel = ({}: IProprs) => {
+const SidePanel = () => {
+  const dispatch = useDispatch();
+  const tooltipVisible = useSelector((state: RootState) => state.tooltip.tooltipVisible);
+  console.log(tooltipVisible);
   const mounthFile = [];
   //цикл для перебора годов
   for (let year = 2022; year < 2051; year++) {
@@ -46,7 +51,14 @@ const SidePanel = ({}: IProprs) => {
           </>
         }
       />
-      <SideElement elementInside={<p>FAQ?</p>} />
+      <SideElement
+        elementInside={
+          <div className="faq" onClick={() => dispatch(setTooltipVisible(!tooltipVisible))}>
+            <p>FAQ</p>
+            <Tooltip discription={'вставить ссылки на статьи и опиание'} />
+          </div>
+        }
+      />
     </div>
   );
 };

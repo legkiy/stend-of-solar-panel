@@ -1,18 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  dropdawnActive: false,
+  dropdownActive: false,
 };
 
 export const dropdawnSlice = createSlice({
   name: 'dropdown',
   initialState,
   reducers: {
-    setDropdawnActive: (state, action) => {
-      state.dropdawnActive = action.payload;
+    setDropdownActive: (state, action) => {
+      state.dropdownActive = action.payload;
     },
   },
 });
 
-export const { setDropdawnActive } = dropdawnSlice.actions;
+export const { setDropdownActive } = dropdawnSlice.actions;
 export default dropdawnSlice.reducer;
