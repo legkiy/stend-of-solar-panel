@@ -69,35 +69,34 @@ const ChartBox = ({
 
   useEffect(() => {
     promise.then(() => {
-      if (type === 'watt') {
-        setChartData({
-          labels: arrDate,
-          datasets: [
-            {
-              label,
-              data: yAxis,
-              borderColor: color,
-            },
-            {
-              label: label2,
-              data: y2Axis,
-              borderColor: color2,
-            },
-          ],
-        });
-      }
-      if (type !== 'watt') {
-        setChartData({
-          labels: arrDate,
-          datasets: [
-            {
-              label,
-              data: yAxis,
-              borderColor: color,
-            },
-          ],
-        });
-      }
+      setChartData(
+        type === 'watt'
+          ? {
+              labels: arrDate,
+              datasets: [
+                {
+                  label,
+                  data: yAxis,
+                  borderColor: color,
+                },
+                {
+                  label: label2,
+                  data: y2Axis,
+                  borderColor: color2,
+                },
+              ],
+            }
+          : {
+              labels: arrDate,
+              datasets: [
+                {
+                  label,
+                  data: yAxis,
+                  borderColor: color,
+                },
+              ],
+            }
+      );
     });
   }, [panel, selectCsv]);
 

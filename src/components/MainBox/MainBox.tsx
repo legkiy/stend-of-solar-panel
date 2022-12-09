@@ -23,13 +23,6 @@ const Main = ({}: IProps) => {
   let headers = new Headers();
   headers.set('Authorization', 'Basic ' + btoa(username + ':' + password));
 
-  // let d3arr: any = [];
-  // const cavfile = `./${selectCsv}.csv`;
-  // const d3data: any = d3.csv(cavfile, (file: any): any => {
-  //   d3arr.push(file);
-  // });
-  // console.log(d3arr);
-
   async function getData(el: number) {
     const res = await fetch(csv, {
       mode: 'no-cors',
@@ -54,7 +47,7 @@ const Main = ({}: IProps) => {
       const amp = [amp1, amp2, amp3];
       const volt = [v1, v2, v3];
       const watt = amp.map((value, index) => value * volt[index]); //считаем мощность панелей умножая каждый эллемент amp на volt
-      const prod = watt.map((value) => value / (0.1848 * 1.64 * 0.99)); //получаем приход солнечной радицаии учитывая КПД панелей
+      const prod = watt.map((value) => value / (0.1848 * 1.64 * 0.99)); //получаем приход солнечной радицаии учитывая КПД и площадь панелей
 
       arrDate.push(date);
       arrTime.push(time);
