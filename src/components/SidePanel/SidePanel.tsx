@@ -11,7 +11,6 @@ import { RootState } from '../../store/store';
 const SidePanel = () => {
   const dispatch = useDispatch();
   const tooltipVisible = useSelector((state: RootState) => state.tooltip.tooltipVisible);
-  console.log(tooltipVisible);
   const mounthFile = [];
   //цикл для перебора годов
   for (let year = 2022; year < 2051; year++) {

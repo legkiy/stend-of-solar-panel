@@ -13,6 +13,20 @@ $spacebitwin: 20px;
   border-radius: 35px;
   padding: 5px;
 }
+
 .chart:first-child {
   margin-right: 20px;
+}
+
+@media only screen and (max-width: 480px) {
+  .chart {
+    width: calc(100% - 10px);
+    margin: auto;
+    max-height: 350px;
+  }
+  .chart:first-child {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: auto;
+  }
 }

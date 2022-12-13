@@ -91,6 +91,7 @@ const ChartBox = ({
 
   const options: object = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       tooltip: {
         enabled: true,

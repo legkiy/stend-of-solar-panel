@@ -66,7 +66,6 @@ const Main = ({}: IProps) => {
   const arrProd: number[] = [];
 
   const promise: Promise<void> = getData(panel);
-  console.log(arrProd);
 
   return (
     <div className="mainBox">
