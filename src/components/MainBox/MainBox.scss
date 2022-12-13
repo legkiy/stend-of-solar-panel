@@ -9,12 +9,12 @@
 .chart-box:first-child {
   margin-bottom: 20px;
 }
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 600px) {
   .chart-box {
     flex-direction: column;
     height: auto;
   }
   .chart-box:first-child {
-    margin-bottom: 5px;
+    margin-bottom: 0;
   }
 }
