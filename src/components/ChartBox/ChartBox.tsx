@@ -67,34 +67,21 @@ const ChartBox = ({
     yMax = 1000;
   }
 
+  function getDrawChart(labelName: string, axisData: number[], color: string): {} {
+    return { label: labelName, data: axisData, borderColor: color };
+  }
+
   useEffect(() => {
     promise.then(() => {
       setChartData(
         type === 'watt'
           ? {
               labels: arrDate,
-              datasets: [
-                {
-                  label,
-                  data: yAxis,
-                  borderColor: color,
-                },
-                {
-                  label: label2,
-                  data: y2Axis,
-                  borderColor: color2,
-                },
-              ],
+              datasets: [getDrawChart(label, yAxis, color), getDrawChart(label2!, y2Axis!, color2)],
             }
           : {
               labels: arrDate,
-              datasets: [
-                {
-                  label,
-                  data: yAxis,
-                  borderColor: color,
-                },
-              ],
+              datasets: [getDrawChart(label, yAxis, color)],
             }
       );
     });

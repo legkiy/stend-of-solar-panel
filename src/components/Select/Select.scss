@@ -23,7 +23,7 @@ $openDropdown: all 0.2s;
   width: 100%;
   max-height: 0;
   text-align: left;
-  overflow: scroll;
+  overflow: auto;
   background-color: white;
   border-radius: 0 0 8px 8px;
   box-shadow: $selectShadow;
