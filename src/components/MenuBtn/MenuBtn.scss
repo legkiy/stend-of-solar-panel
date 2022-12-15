@@ -4,6 +4,18 @@
   width: fit-content;
   height: fit-content;
   border: none;
+  margin: auto 10px auto 30px;
+}
+.menuBtn-active {
+  box-shadow: inset 1px 1px 5px 0px rgba(0, 0, 0, 0.507);
+}
+.first-line-menu-open {
+  transform-origin: center center;
+  transform: rotate(30deg);
+}
+.second-line-menu-open {
+  transform-origin: center center;
+  transform: rotate(-30deg);
 }
 
 @media only screen and (max-width: 600px) {

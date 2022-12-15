@@ -26,19 +26,18 @@ const Select = ({ options }: IPropsSelect) => {
           <svg className="arrow">
             <g className={dropdownActive ? 'reverse-rotate-arrow' : 'rotate-arrow'}>
               <line
-                className="line"
-                x1="1"
+                x1="2"
                 y1="5"
-                x2="7"
+                x2="8"
                 y2="9"
                 stroke="#000000"
                 strokeWidth="2"
                 strokeLinecap="round"
               />
               <line
-                x1="7"
+                x1="8"
                 y1="9"
-                x2="13"
+                x2="14"
                 y2="5"
                 stroke="#000000"
                 strokeWidth="2"
