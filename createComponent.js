@@ -8,6 +8,11 @@ const ${name} = () => {
 }
 export default ${name}`;
 const getStyleTemplate = (name) => `.${name} {
+}
+
+@media only screen and (max-width: 600px) {
+  .${name} {
+  }
 }`;
 
 const createDir = (name) => {

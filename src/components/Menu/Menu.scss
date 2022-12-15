@@ -1,4 +1,6 @@
-.sidePanel {
+$menuOpenTransition: height 0.5s;
+
+.menu {
   float: left;
   width: 240px;
   height: 100%;
@@ -22,4 +24,13 @@
 }
 
 @media only screen and (max-width: 600px) {
+  .menu {
+    width: 100%;
+    height: calc(98px + 5%);
+    transition: $menuOpenTransition;
+  }
+  .menu-open {
+    height: 100%;
+    transition: $menuOpenTransition;
+  }
 }

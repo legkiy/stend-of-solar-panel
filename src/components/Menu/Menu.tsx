@@ -1,5 +1,6 @@
-import './SidePanel.scss';
+import './Menu.scss';
 import SideElement from './SideElement';
+import MenuBtn from '../MenuBtn';
 import PanelButton from '../PanelButton';
 import isemLogo from './isemLogo.png';
 import Select from '../Select';
@@ -11,6 +12,8 @@ import { RootState } from '../../store/store';
 const SidePanel = () => {
   const dispatch = useDispatch();
   const tooltipVisible = useSelector((state: RootState) => state.tooltip.tooltipVisible);
+  const menuOpen = useSelector((state: RootState) => state.menuBtn.menuOpen);
+
   const mounthFile = [];
   //цикл для перебора годов
   for (let year = 2022; year < 2051; year++) {
@@ -28,13 +31,16 @@ const SidePanel = () => {
     }
   }
   return (
-    <div className="sidePanel">
+    <div className={`menu ${menuOpen && 'menu-open'}`}>
       <SideElement
         elementInside={
-          <a className="isemLogo" href="https://isem.irk.ru/">
-            <img src={isemLogo} alt="logo"></img>
-            ИСЭМ СО РАН
-          </a>
+          <div style={{ display: 'flex' }}>
+            <a className="isemLogo" href="https://isem.irk.ru/">
+              <img src={isemLogo} alt="logo"></img>
+              ИСЭМ СО РАН
+            </a>
+            <MenuBtn />
+          </div>
         }
       />
       <SideElement elementInside={<Select options={mounthFile} />} />

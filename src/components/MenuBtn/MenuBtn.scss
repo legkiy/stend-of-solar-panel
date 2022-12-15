@@ -1,0 +1,13 @@
+.menuBtn {
+  display: none;
+  justify-content: center;
+  width: fit-content;
+  height: fit-content;
+  border: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .menuBtn {
+    display: flex;
+  }
+}
