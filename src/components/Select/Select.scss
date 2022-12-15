@@ -73,3 +73,9 @@ $openDropdown: all 0.2s;
 .line {
   transition: $openDropdown;
 }
+
+@media only screen and (max-width: 600px) {
+  .dropdown-active {
+    max-height: calc(7 * 100%);
+  }
+}

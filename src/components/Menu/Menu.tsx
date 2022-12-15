@@ -1,6 +1,6 @@
 import './Menu.scss';
 import SideElement from './SideElement';
-import MenuBtn from '../MenuBtn';
+import MenuBtn from './MenuBtn';
 import PanelButton from '../PanelButton';
 import isemLogo from './isemLogo.png';
 import Select from '../Select';

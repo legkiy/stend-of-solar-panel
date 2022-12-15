@@ -1,8 +1,7 @@
 import './MenuBtn.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { setMenuOpen } from '../../features/menuBtn/menuBtnSlice';
-import { RootState } from '../../store/store';
-import { svg } from 'd3';
+import { setMenuOpen } from '../../../features/menuBtn/menuBtnSlice';
+import { RootState } from '../../../store/store';
 
 const MenuBtn = () => {
   const dispatch = useDispatch();
@@ -10,8 +9,8 @@ const MenuBtn = () => {
 
   const lineOpacity = menuOpen ? 0 : 1;
 
-  const svgHeight = 36;
-  const svgWidth = 50;
+  const svgHeight = 31;
+  const svgWidth = 45;
   const lineTop = 4;
   const lineBottom = svgHeight - lineTop;
   const lineLeft = 3;
@@ -31,27 +30,25 @@ const MenuBtn = () => {
             strokeLinecap: 'round',
           }}
         >
-          <line x1={lineLeft} y1={lineTop} x2={lineRight} y2={lineTop} opacity={lineOpacity}></line>
           <line
             x1={lineLeft}
-            y1={lineVMiddle}
+            y1={lineTop}
             x2={lineRight}
-            y2={lineVMiddle}
-            className={`${menuOpen && 'first-line-menu-open'}`}
+            y2={menuOpen ? lineBottom : lineTop}
           ></line>
           <line
             x1={lineLeft}
             y1={lineVMiddle}
             x2={lineRight}
             y2={lineVMiddle}
-            className={`${menuOpen && 'second-line-menu-open'}`}
+            opacity={lineOpacity}
+            className={`${menuOpen && 'first-line-menu-open'}`}
           ></line>
           <line
             x1={lineLeft}
             y1={lineBottom}
             x2={lineRight}
-            y2={lineBottom}
-            opacity={lineOpacity}
+            y2={menuOpen ? lineTop : lineBottom}
           ></line>
         </g>
       </svg>

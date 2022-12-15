@@ -26,7 +26,7 @@ $menuOpenTransition: height 0.5s;
 @media only screen and (max-width: 600px) {
   .menu {
     width: 100%;
-    height: calc(98px + 5%);
+    height: 110px;
     transition: $menuOpenTransition;
   }
   .menu-open {
