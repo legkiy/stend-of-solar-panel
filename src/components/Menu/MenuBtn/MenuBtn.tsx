@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setMenuOpen } from '../../../features/menuBtn/menuBtnSlice';
 import { RootState } from '../../../store/store';
 
+
 const MenuBtn = () => {
   const dispatch = useDispatch();
   const menuOpen = useSelector((state: RootState) => state.menuBtn.menuOpen);
@@ -11,10 +12,10 @@ const MenuBtn = () => {
 
   const svgHeight = 31;
   const svgWidth = 45;
-  const lineTop = 4;
-  const lineBottom = svgHeight - lineTop;
   const lineLeft = 3;
+  const lineTop = 4;
   const lineRight = svgWidth - lineLeft;
+  const lineBottom = svgHeight - lineTop;
   const lineVMiddle = svgHeight / 2;
 
   return (

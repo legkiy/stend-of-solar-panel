@@ -12,7 +12,6 @@ $spacebitwin: 20px;
   align-items: center;
   border-radius: 35px;
   padding: 5px;
-  z-index: 1;
 }
 
 .chart:first-child {
@@ -24,6 +23,7 @@ $spacebitwin: 20px;
     width: calc(100% - 10px);
     margin: auto;
     max-height: 350px;
+    z-index: 1;
   }
   .chart:first-child {
     margin-top: 5px;

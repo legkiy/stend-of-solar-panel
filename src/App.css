@@ -9,11 +9,13 @@
   margin: 20px;
   height: calc(100% - 40px);
   width: 100%;
+  position: relative;
 }
 
 .interactive-el {
   background-color: white;
   box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.507);
+  border: none;
   border-radius: 8px;
   padding: 3px;
   cursor: pointer;

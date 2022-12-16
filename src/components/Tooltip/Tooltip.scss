@@ -1,23 +1,31 @@
 .tooltip {
   position: absolute;
-  display: flex;
   text-align: left;
-  top: -37px;
-  height: 100px;
-  margin: 5%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  height: 80%;
+  overflow: hidden;
   border-radius: 25px;
   align-items: center;
-  overflow: hidden;
-  white-space: nowrap;
   transition: all 0.3s;
-  background-color: rgba(241, 251, 255, 0.918);
+  overflow-y: scroll;
+  background-color: rgba(241, 251, 255, 0.952);
+  box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.507);
+  z-index: 1000;
+  ul {
+    margin: 2px;
+  }
 }
-.tooltipDeactive {
-  left: 110px;
-  color: rgba(255, 255, 255, 0);
-  width: 0;
+.tooltip-btn {
+  margin: 10px 10px 0 auto;
+  display: flex;
 }
-.tooltipActive {
-  left: 145px;
-  width: 500px;
+.tooltip-content {
+  margin: 10px 20px;
+}
+@media only screen and (max-width: 600px) {
+  .tooltip {
+    height: 90%;
+  }
 }
