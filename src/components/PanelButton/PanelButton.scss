@@ -1,0 +1,16 @@
+$btnShadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.507);
+
+.PanelButton {
+  cursor: pointer;
+  min-width: 35px;
+  border: none;
+  margin: 5px;
+  background-color: white;
+  color: black;
+}
+.PanelButton:active {
+  background-color: rgba(0, 0, 0, 0.384);
+}
+.chosen {
+  background-color: rgba(127, 255, 123, 0.795) !important;
+}

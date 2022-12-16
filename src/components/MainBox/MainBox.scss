@@ -1,6 +1,20 @@
 .mainBox {
+  width: 100%;
+}
+
+.chart-box {
   display: flex;
-  width: calc(100% - 300px);
-  height: calc(100% - 40px);
-  margin: 20px 0;
+  height: calc(50% - 15px);
+}
+.chart-box:first-child {
+  margin-bottom: 20px;
+}
+@media only screen and (max-width: 600px) {
+  .chart-box {
+    flex-direction: column;
+    height: auto;
+  }
+  .chart-box:first-child {
+    margin-bottom: 0;
+  }
 }

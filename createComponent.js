@@ -8,6 +8,11 @@ const ${name} = () => {
 }
 export default ${name}`;
 const getStyleTemplate = (name) => `.${name} {
+}
+
+@media only screen and (max-width: 600px) {
+  .${name} {
+  }
 }`;
 
 const createDir = (name) => {
@@ -37,9 +42,9 @@ const createComponent = () => {
   const lowerName = `${name[0].toLowerCase()}${name.slice(1)}`;
 
   createDir(name);
-  createFile(`${name}.jsx`, getComponentTemplate(name, lowerName));
+  createFile(`${name}.tsx`, getComponentTemplate(name, lowerName));
   createFile(`${name}.scss`, getStyleTemplate(lowerName));
-  createFile('index.jsx', getExportLineTemplate(name));
+  createFile('index.tsx', getExportLineTemplate(name));
 };
 
 createComponent();

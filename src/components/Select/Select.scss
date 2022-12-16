@@ -1,77 +1,59 @@
-$selectShdow: 2px 3px 8px 2px rgba(0, 0, 0, 0.12);
-$maxHeightSelectContent: 300px;
-$defaultTrasition: all 0.15s;
+$selectShadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.507);
+$openDropdown: all 0.2s;
 
 .select {
   position: relative;
-  width: 110px;
+  display: flex;
+  min-width: 100px;
+  height: 24px;
   margin: auto;
+  cursor: pointer;
+  transition: $openDropdown;
+  z-index: 1;
+}
 
-  .select-btn {
-    display: flex;
-    cursor: pointer;
-    min-height: 23px;
-    background: #ffffff;
-    padding: 3px;
-    box-shadow: $selectShdow;
-    border-radius: 12px;
-    transition: $defaultTrasition;
+.select-active {
+  border-radius: 8px 8px 0 0;
+}
+
+.dropdown {
+  position: absolute;
+  top: 27px;
+  left: 0;
+  width: 100%;
+  max-height: 0;
+  text-align: left;
+  overflow: auto;
+  background-color: white;
+  border-radius: 0 0 8px 8px;
+  box-shadow: $selectShadow;
+  transition: $openDropdown;
+  :hover {
+    background-color: rgba(187, 187, 187, 0.5);
   }
+}
 
-  .select-btn-active {
-    border-radius: 12px 12px 0 0;
-  }
+.dropdown-active {
+  max-height: 400px;
+  top: 32px;
+  transition: $openDropdown;
+}
 
-  .select-content {
-    position: absolute;
-    z-index: 1;
-    top: 110%;
-
-    background-color: #ffffff;
-    width: 100%;
-    overflow: hidden scroll;
-    box-shadow: $selectShdow;
-    border-radius: 0 0 12px 12px;
-  }
-
-  .not-collapsed {
-    left: 0;
-
-    max-height: 300px;
-    transition: $defaultTrasition;
-  }
-
-  .collapsed {
-    border-radius: 18px;
-    width: 0;
-    left: 50%;
-
-    max-height: 0;
-    transition: $defaultTrasition;
-  }
-
-  .select-item {
-    text-align: left;
-    padding: 5px;
-    transition: $defaultTrasition;
-    cursor: pointer;
-    &:hover {
-      background: #e4e4e4;
-    }
-  }
+.dropdown-item {
+  padding: 3px;
 }
 
 .arrow-box {
   display: flex;
   margin: auto;
-  margin-right: 0;
+  margin-right: 0px;
   justify-content: center;
 }
 
 .arrow {
   color: #00000081;
   height: 14px;
-  width: 14px;
+  width: 16px;
 }
 
 .rotate-arrow {
@@ -89,5 +71,11 @@ $defaultTrasition: all 0.15s;
 }
 
 .line {
-  transition: all 0.2s;
+  transition: $openDropdown;
+}
+
+@media only screen and (max-width: 600px) {
+  .dropdown-active {
+    max-height: calc(7 * 100%);
+  }
 }
