@@ -29,25 +29,23 @@ const DropDown = ({ tooltipName, discription }: IProps) => {
 
   return (
     <div className={`tooltip`} style={tooltipVisible ? getTooltipVisible : getTooltipNoVisible}>
-      <div>
-        <button
-          className="tooltip-btn interactive-el"
-          onClick={() => dispatch(setTooltipVisible(!tooltipVisible))}
-        >
-          <svg height={svgSquare} width={svgSquare}>
-            <g
-              style={{
-                stroke: 'black',
-                strokeWidth: '3px',
-                strokeLinecap: 'round',
-              }}
-            >
-              <line x1={lineLeft} y1={lineTop} x2={lineRight} y2={lineBottom}></line>
-              <line x1={lineLeft} y1={lineBottom} x2={lineRight} y2={lineTop}></line>
-            </g>
-          </svg>
-        </button>
-      </div>
+      <button
+        className="tooltip-btn interactive-el"
+        onClick={() => dispatch(setTooltipVisible(!tooltipVisible))}
+      >
+        <svg height={svgSquare} width={svgSquare}>
+          <g
+            style={{
+              stroke: 'black',
+              strokeWidth: '3px',
+              strokeLinecap: 'round',
+            }}
+          >
+            <line x1={lineLeft} y1={lineTop} x2={lineRight} y2={lineBottom}></line>
+            <line x1={lineLeft} y1={lineBottom} x2={lineRight} y2={lineTop}></line>
+          </g>
+        </svg>
+      </button>
       <div className="tooltip-content">{discription}</div>
     </div>
   );

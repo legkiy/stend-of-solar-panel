@@ -30,6 +30,7 @@ const SidePanel = () => {
       mounthFile.push({ option: monthYear, value: monthYearFile });
     }
   }
+
   return (
     <div className={`menu ${menuOpen && 'menu-open'}`}>
       <SideElement
@@ -58,27 +59,7 @@ const SidePanel = () => {
       />
       <SideElement
         elementInside={
-          <div className="faqqq">
-            <button
-              className="interactive-el"
-              onClick={() => dispatch(setTooltipVisible(!tooltipVisible))}
-            >
-              FAQ
-            </button>
-            <Tooltip
-              tooltipName="FAQ"
-              discription={
-                <>
-                  <h3>FAQ</h3>
-                </>
-              }
-            />
-          </div>
-        }
-      />
-      <SideElement
-        elementInside={
-          <div className="faqqq">
+          <div>
             <button
               className="interactive-el"
               onClick={() => dispatch(setTooltipVisible(!tooltipVisible))}

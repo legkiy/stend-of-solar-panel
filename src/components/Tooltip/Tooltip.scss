@@ -5,16 +5,14 @@
   margin-right: auto;
   width: 90%;
   height: 80%;
-  overflow: hidden;
   border-radius: 25px;
   align-items: center;
   transition: all 0.3s;
-  overflow-y: scroll;
   background-color: rgba(241, 251, 255, 0.952);
   box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.507);
   z-index: 1000;
   ul {
-    margin: 2px;
+    margin: 20px;
   }
 }
 .tooltip-btn {
@@ -22,7 +20,10 @@
   display: flex;
 }
 .tooltip-content {
-  margin: 10px 20px;
+  margin: 10px 10px;
+  height: 90%;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 @media only screen and (max-width: 600px) {
   .tooltip {

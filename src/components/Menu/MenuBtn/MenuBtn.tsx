@@ -2,7 +2,7 @@ import './MenuBtn.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { setMenuOpen } from '../../../features/menuBtn/menuBtnSlice';
 import { RootState } from '../../../store/store';
-
+import { setTooltipVisible } from '../../../features/tooltip/tooltipSlice';
 
 const MenuBtn = () => {
   const dispatch = useDispatch();
@@ -21,7 +21,10 @@ const MenuBtn = () => {
   return (
     <button
       className={`menuBtn interactive-el ${menuOpen && 'menuBtn-active'}`}
-      onClick={() => dispatch(setMenuOpen(!menuOpen))}
+      onClick={() => {
+        dispatch(setTooltipVisible(false));
+        dispatch(setMenuOpen(!menuOpen));
+      }}
     >
       <svg height={svgHeight} width={svgWidth}>
         <g
