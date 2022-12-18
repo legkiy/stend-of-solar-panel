@@ -6,12 +6,19 @@ import isemLogo from './isemLogo.png';
 import Select from '../Select';
 import Tooltip from '../Tooltip';
 import { useDispatch, useSelector } from 'react-redux';
-import { setTooltipVisible } from '../../features/tooltip/tooltipSlice';
+import {
+  setTooltipVisibleAdditionalInf,
+  setTooltipVisibleFAQ,
+} from '../../features/tooltip/tooltipSlice';
 import { RootState } from '../../store/store';
 
 const SidePanel = () => {
   const dispatch = useDispatch();
-  const tooltipVisible = useSelector((state: RootState) => state.tooltip.tooltipVisible);
+  const tooltipVisibleAdditionalInf = useSelector(
+    (state: RootState) => state.tooltip.tooltipVisibleAdditionalInf
+  );
+  const tooltipVisibleFAQ = useSelector((state: RootState) => state.tooltip.tooltipVisibleFAQ);
+
   const menuOpen = useSelector((state: RootState) => state.menuBtn.menuOpen);
 
   const mounthFile = [];
@@ -62,12 +69,13 @@ const SidePanel = () => {
           <div>
             <button
               className="interactive-el"
-              onClick={() => dispatch(setTooltipVisible(!tooltipVisible))}
+              onClick={() => dispatch(setTooltipVisibleAdditionalInf(!tooltipVisibleAdditionalInf))}
             >
               Доп. информация
             </button>
             <Tooltip
-              tooltipName="Доп. информация"
+              dispatchFn={setTooltipVisibleAdditionalInf}
+              nameTooltip={'tooltipVisibleAdditionalInf'}
               discription={
                 <>
                   <h3>Статьи по проекту</h3>
@@ -100,6 +108,27 @@ const SidePanel = () => {
                     Разработчики информационно-аналитической системы: сотрудники отдела комплексных
                     и региональных проблем энергетики ИСЭМ СО РАН.
                   </h4>
+                </>
+              }
+            />
+          </div>
+        }
+      />
+      <SideElement
+        elementInside={
+          <div>
+            <button
+              className="interactive-el"
+              onClick={() => dispatch(setTooltipVisibleFAQ(!tooltipVisibleFAQ))}
+            >
+              faq
+            </button>
+            <Tooltip
+              dispatchFn={setTooltipVisibleFAQ}
+              nameTooltip={'tooltipVisibleFAQ'}
+              discription={
+                <>
+                  <h3>faq</h3>
                 </>
               }
             />

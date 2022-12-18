@@ -1,18 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  tooltipVisible: false,
+  tooltipVisibleAdditionalInf: false,
+  tooltipVisibleFAQ: false,
 };
 
 export const tooltipSlice = createSlice({
   name: 'tooltip',
   initialState,
   reducers: {
-    setTooltipVisible: (state, action) => {
-      state.tooltipVisible = action.payload;
+    setTooltipVisibleAdditionalInf: (state, action) => {
+      state.tooltipVisibleAdditionalInf = action.payload;
+    },
+    setTooltipVisibleFAQ: (state, action) => {
+      state.tooltipVisibleFAQ = action.payload;
     },
   },
 });
 
-export const { setTooltipVisible } = tooltipSlice.actions;
+export const { setTooltipVisibleAdditionalInf, setTooltipVisibleFAQ } = tooltipSlice.actions;
 export default tooltipSlice.reducer;

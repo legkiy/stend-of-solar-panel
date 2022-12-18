@@ -2,7 +2,7 @@ import './MenuBtn.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { setMenuOpen } from '../../../features/menuBtn/menuBtnSlice';
 import { RootState } from '../../../store/store';
-import { setTooltipVisible } from '../../../features/tooltip/tooltipSlice';
+import { setTooltipVisibleAdditionalInf } from '../../../features/tooltip/tooltipSlice';
 
 const MenuBtn = () => {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const MenuBtn = () => {
     <button
       className={`menuBtn interactive-el ${menuOpen && 'menuBtn-active'}`}
       onClick={() => {
-        dispatch(setTooltipVisible(false));
+        dispatch(setTooltipVisibleAdditionalInf(false));
         dispatch(setMenuOpen(!menuOpen));
       }}
     >

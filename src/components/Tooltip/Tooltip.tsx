@@ -1,17 +1,18 @@
 import './Tooltip.scss';
-import { setTooltipVisible } from '../../features/tooltip/tooltipSlice';
 import { RootState } from '../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { ReactNode } from 'react';
+import { AnyAction } from '@reduxjs/toolkit';
 
 interface IProps {
-  tooltipName: string;
+  dispatchFn: (payload: any) => AnyAction;
+  nameTooltip: 'tooltipVisibleAdditionalInf' | 'tooltipVisibleFAQ';
   discription: ReactNode;
 }
 
-const DropDown = ({ tooltipName, discription }: IProps) => {
+const DropDown = ({ dispatchFn, nameTooltip, discription }: IProps) => {
   const dispatch = useDispatch();
-  const tooltipVisible = useSelector((state: RootState) => state.tooltip.tooltipVisible);
+  const tooltipVisible = useSelector((state: RootState) => state.tooltip[nameTooltip]);
 
   const svgSquare = 24;
   const lineLeft = 3;
@@ -31,7 +32,7 @@ const DropDown = ({ tooltipName, discription }: IProps) => {
     <div className={`tooltip`} style={tooltipVisible ? getTooltipVisible : getTooltipNoVisible}>
       <button
         className="tooltip-btn interactive-el"
-        onClick={() => dispatch(setTooltipVisible(!tooltipVisible))}
+        onClick={() => dispatch(dispatchFn(!tooltipVisible))}
       >
         <svg height={svgSquare} width={svgSquare}>
           <g
