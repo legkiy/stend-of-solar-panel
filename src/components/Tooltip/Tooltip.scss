@@ -14,6 +14,7 @@
   flex-direction: column;
   width: 80vw;
   height: 80vh;
+  overflow: hidden;
   border-radius: 25px;
   background-color: rgba(241, 251, 255, 0.952);
   box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.507);
@@ -29,15 +30,16 @@
 
 .tooltip-content {
   text-align: left;
-  margin: 10px 10px;
-  height: 90%;
+  margin: 10px;
+  height: 87%;
   overflow-y: scroll;
   overflow-x: hidden;
 }
 
 @media only screen and (max-width: 600px) {
   .tooltip {
-    height: 90vh;
+    margin-top: -40px;
+    height: 80vh;
     width: 95vw;
   }
 }

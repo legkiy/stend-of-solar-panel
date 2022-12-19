@@ -93,7 +93,7 @@ const Main = ({}: IProps) => {
         <ChartBox
           type={'watt'}
           label={'Мощность, W'}
-          label2={'Радиация, W/м2'}
+          label2={'Радиация, W/m2'}
           arrDate={arrDate}
           arrTime={arrTime}
           yAxis={arrWatt}

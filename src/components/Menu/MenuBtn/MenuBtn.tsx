@@ -10,8 +10,8 @@ const MenuBtn = () => {
 
   const lineOpacity = menuOpen ? 0 : 1;
 
-  const svgHeight = 31;
-  const svgWidth = 45;
+  const svgHeight = 35;
+  const svgWidth = 35;
   const lineLeft = 3;
   const lineTop = 4;
   const lineRight = svgWidth - lineLeft;

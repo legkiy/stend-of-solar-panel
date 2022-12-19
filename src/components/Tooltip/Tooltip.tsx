@@ -14,7 +14,7 @@ const DropDown = ({ dispatchFn, nameTooltip, discription }: IProps) => {
   const dispatch = useDispatch();
   const tooltipVisible = useSelector((state: RootState) => state.tooltip[nameTooltip]);
 
-  const svgSquare = 24;
+  const svgSquare = 28;
   const lineLeft = 3;
   const lineTop = lineLeft;
   const lineRight = svgSquare - lineLeft;
