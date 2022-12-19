@@ -5,6 +5,7 @@
 .chart-box {
   display: flex;
   height: calc(50% - 15px);
+  background-color: white;
 }
 .chart-box:first-child {
   margin-bottom: 20px;

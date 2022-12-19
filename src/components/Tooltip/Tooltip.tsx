@@ -25,29 +25,34 @@ const DropDown = ({ dispatchFn, nameTooltip, discription }: IProps) => {
   const hMidle = (100 - tooltipHeight) / 2;
   const wMidle = (100 - tooltipWidht) / 2;
 
-  const getTooltipVisible = { top: `${hMidle}%`, left: `${wMidle}%` };
-  const getTooltipNoVisible = { top: '-100vh', left: `${wMidle}%` };
+  const getTooltipVisible = { top: `${0}%`, left: `${0}%` };
+  const getTooltipNoVisible = { top: '-102vh', left: `${0}vw` };
 
   return (
-    <div className={`tooltip`} style={tooltipVisible ? getTooltipVisible : getTooltipNoVisible}>
-      <button
-        className="tooltip-btn interactive-el"
-        onClick={() => dispatch(dispatchFn(!tooltipVisible))}
-      >
-        <svg height={svgSquare} width={svgSquare}>
-          <g
-            style={{
-              stroke: 'black',
-              strokeWidth: '3px',
-              strokeLinecap: 'round',
-            }}
-          >
-            <line x1={lineLeft} y1={lineTop} x2={lineRight} y2={lineBottom}></line>
-            <line x1={lineLeft} y1={lineBottom} x2={lineRight} y2={lineTop}></line>
-          </g>
-        </svg>
-      </button>
-      <div className="tooltip-content">{discription}</div>
+    <div
+      className="tooltip-background"
+      style={tooltipVisible ? getTooltipVisible : getTooltipNoVisible}
+    >
+      <div className="tooltip">
+        <button
+          className="tooltip-btn interactive-el"
+          onClick={() => dispatch(dispatchFn(!tooltipVisible))}
+        >
+          <svg height={svgSquare} width={svgSquare}>
+            <g
+              style={{
+                stroke: 'black',
+                strokeWidth: '3px',
+                strokeLinecap: 'round',
+              }}
+            >
+              <line x1={lineLeft} y1={lineTop} x2={lineRight} y2={lineBottom}></line>
+              <line x1={lineLeft} y1={lineBottom} x2={lineRight} y2={lineTop}></line>
+            </g>
+          </svg>
+        </button>
+        <div className="tooltip-content">{discription}</div>
+      </div>
     </div>
   );
 };

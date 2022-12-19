@@ -2,6 +2,7 @@
   text-align: center;
   display: flex;
   height: 100%;
+  position: relative;
 }
 
 .myApp {
@@ -9,7 +10,6 @@
   margin: 20px;
   height: calc(100% - 40px);
   width: 100%;
-  position: relative;
 }
 
 .interactive-el {

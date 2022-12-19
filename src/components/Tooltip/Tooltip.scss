@@ -1,32 +1,43 @@
-.tooltip {
-  position: absolute;
-  text-align: left;
-  margin-left: auto;
-  margin-right: auto;
-  width: 90%;
-  height: 80%;
-  border-radius: 25px;
+.tooltip-background {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.308);
+  position: fixed;
+  z-index: 1000;
+  transition: all 0.1s;
   align-items: center;
-  transition: all 0.3s;
+  justify-content: center;
+  display: flex;
+}
+
+.tooltip {
+  flex-direction: column;
+  width: 80vw;
+  height: 80vh;
+  border-radius: 25px;
   background-color: rgba(241, 251, 255, 0.952);
   box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.507);
-  z-index: 1000;
   ul {
     margin: 20px;
   }
 }
+
 .tooltip-btn {
-  margin: 10px 10px 0 auto;
+  margin: 20px 20px 10px auto;
   display: flex;
 }
+
 .tooltip-content {
+  text-align: left;
   margin: 10px 10px;
   height: 90%;
   overflow-y: scroll;
   overflow-x: hidden;
 }
+
 @media only screen and (max-width: 600px) {
   .tooltip {
-    height: 90%;
+    height: 90vh;
+    width: 95vw;
   }
 }
