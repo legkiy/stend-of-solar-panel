@@ -4,7 +4,6 @@ import MenuBtn from './MenuBtn';
 import PanelButton from '../PanelButton';
 import isemLogo from './isemLogo.png';
 import Select from '../Select';
-import Tooltip from '../Tooltip';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   setTooltipVisibleAdditionalInf,
@@ -71,16 +70,6 @@ const SidePanel = () => {
             onClick={() => dispatch(setTooltipVisibleAdditionalInf(!tooltipVisibleAdditionalInf))}
           >
             Доп. информация
-          </button>
-        }
-      />
-      <SideElement
-        elementInside={
-          <button
-            className="interactive-el"
-            onClick={() => dispatch(setTooltipVisibleFAQ(!tooltipVisibleFAQ))}
-          >
-            FAQ
           </button>
         }
       />
