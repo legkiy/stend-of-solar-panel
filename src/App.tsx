@@ -1,5 +1,4 @@
 import './App.css';
-import csvFile from './components/ChartBox/data/2022-09.csv';
 import { useState } from 'react';
 import Main from './components/MainBox';
 import Menu from './components/Menu';

@@ -4,7 +4,6 @@ import MenuBtn from './MenuBtn';
 import PanelButton from '../PanelButton';
 import isemLogo from './isemLogo.png';
 import Select from '../Select';
-import Tooltip from '../Tooltip';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   setTooltipVisibleAdditionalInf,

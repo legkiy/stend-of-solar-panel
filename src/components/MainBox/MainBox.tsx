@@ -1,8 +1,7 @@
 import ChartBox from '../ChartBox';
 import './MainBox.scss';
 import { RootState } from '../../store/store';
-import { useDispatch, useSelector } from 'react-redux';
-import * as d3 from 'd3';
+import {  useSelector } from 'react-redux';
 
 interface IProps {}
 
