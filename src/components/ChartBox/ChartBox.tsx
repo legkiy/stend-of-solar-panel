@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './ChartBox.scss';
 import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
@@ -14,8 +14,18 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import zoomPlugin from 'chartjs-plugin-zoom';
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  zoomPlugin
+);
 
 ChartJS.defaults.font.family = 'Roboto';
 ChartJS.defaults.font.size = 14;
@@ -71,6 +81,14 @@ const ChartBox = ({
     return { label: labelName, data: axisData, borderColor: color };
   }
 
+  const chartRef = useRef<any>();
+
+  const handleResetZoom = () => {
+    if (chartRef && chartRef.current) {
+      chartRef.current.resetZoom();
+    }
+  };
+
   useEffect(() => {
     promise.then(() => {
       setChartData(
@@ -102,6 +120,18 @@ const ChartBox = ({
           },
         },
       },
+      zoom: {
+        zoom: {
+          wheel: {
+            enabled: true,
+          },
+          pan: {
+            enabled: true,
+          },
+          mode: 'xy',
+        },
+        pan: { enabled: true, mode: 'xy' },
+      },
     },
     scales: {
       y: {
@@ -111,6 +141,13 @@ const ChartBox = ({
     },
   };
 
-  return <div className="chart">{<Line data={chartData} options={options} />}</div>;
+  return (
+    <div className="chart">
+      <button className="interactive-el" onClick={handleResetZoom}>
+        Reset Zoom
+      </button>
+      <Line ref={chartRef} data={chartData} options={options} />
+    </div>
+  );
 };
 export default ChartBox;

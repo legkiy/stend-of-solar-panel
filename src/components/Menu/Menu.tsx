@@ -10,6 +10,7 @@ import {
   setTooltipVisibleFAQ,
 } from '../../features/tooltip/tooltipSlice';
 import { RootState } from '../../store/store';
+import { Chart } from 'react-chartjs-2';
 
 const SidePanel = () => {
   const dispatch = useDispatch();
@@ -50,7 +51,13 @@ const SidePanel = () => {
           </div>
         }
       />
-      <SideElement elementInside={<Select options={mounthFile} />} />
+      <SideElement
+        elementInside={
+          <>
+            <Select options={mounthFile} />
+          </>
+        }
+      />
       <SideElement
         elementInside={
           <>
