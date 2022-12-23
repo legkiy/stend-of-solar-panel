@@ -81,14 +81,6 @@ const ChartBox = ({
     return { label: labelName, data: axisData, borderColor: color };
   }
 
-  const chartRef = useRef<any>();
-
-  const handleResetZoom = () => {
-    if (chartRef && chartRef.current) {
-      chartRef.current.resetZoom();
-    }
-  };
-
   useEffect(() => {
     promise.then(() => {
       setChartData(
@@ -128,9 +120,13 @@ const ChartBox = ({
           pan: {
             enabled: true,
           },
-          mode: 'xy',
+          mode: 'x',
         },
-        pan: { enabled: true, mode: 'xy' },
+        pan: {
+          enabled: true,
+          mode: 'x',
+          threshold: 10,
+        },
       },
     },
     scales: {
@@ -141,12 +137,19 @@ const ChartBox = ({
     },
   };
 
+  const chartRef = useRef<any>(null);
+
   return (
-    <div className="chart">
-      <button className="interactive-el" onClick={handleResetZoom}>
+    <div className="chart-and-btn">
+      <div className="chart">
+        <Line ref={chartRef} data={chartData} options={options} />
+      </div>
+      <button
+        className="interactive-el zoom-reset-btn"
+        onClick={() => chartRef.current.resetZoom()}
+      >
         Reset Zoom
       </button>
-      <Line ref={chartRef} data={chartData} options={options} />
     </div>
   );
 };

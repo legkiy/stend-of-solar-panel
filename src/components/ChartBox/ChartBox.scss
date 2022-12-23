@@ -1,31 +1,44 @@
 $spacebitwin: 20px;
 
-.chart {
-  background-color: rgb(194, 232, 255);
+.chart-and-btn {
+  display: flex;
+  flex-direction: column;
   width: calc(50% - $spacebitwin);
+  background-color: rgb(194, 232, 255);
+  padding: 5px;
+  border-radius: 35px;
+  height: 100%;
+}
+.chart-and-btn:first-child {
+  margin-right: 20px;
+}
+.chart {
+  display: flex;
   justify-content: space-between;
-  height: fit-content;
   min-height: 315px;
   height: 100%;
-  display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 35px;
-  padding: 5px;
 }
 
-.chart:first-child {
-  margin-right: 20px;
+.zoom-reset-btn {
+  width: 60%;
+  margin: 0 auto;
+  box-shadow: none;
 }
 
 @media only screen and (max-width: 600px) {
-  .chart {
+  .chart-and-btn {
     width: calc(100% - 10px);
-    margin: auto;
     max-height: 350px;
+  }
+
+  .chart {
+    width: 100%;
+    margin: 0;
     z-index: 1;
   }
-  .chart:first-child {
+  .chart-and-btn:first-child {
     margin-top: 5px;
     margin-bottom: 5px;
     margin-right: auto;

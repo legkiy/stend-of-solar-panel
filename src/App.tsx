@@ -1,5 +1,5 @@
 import './App.css';
-import Main from './components/MainBox';
+import MainBox from './components/MainBox';
 import Menu from './components/Menu';
 import {
   setTooltipVisibleAdditionalInf,
@@ -14,7 +14,7 @@ function App() {
     <div className="App">
       <div className="myApp">
         <Menu />
-        <Main />
+        <MainBox />
         <Tooltip
           dispatchFn={setTooltipVisibleAdditionalInf}
           nameTooltip={'tooltipVisibleAdditionalInf'}
