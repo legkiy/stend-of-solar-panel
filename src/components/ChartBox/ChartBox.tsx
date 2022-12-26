@@ -78,7 +78,16 @@ const ChartBox = ({
   }
 
   function getDrawChart(labelName: string, axisData: number[], color: string): {} {
-    return { label: labelName, data: axisData, borderColor: color };
+    return {
+      pointStyle: 'rectRounded',
+      pointRadius: 2,
+      fill: true,
+      backgroundColor: color,
+      label: labelName,
+      data: axisData,
+      borderWidth: 2,
+      borderColor: color,
+    };
   }
 
   useEffect(() => {
@@ -102,9 +111,19 @@ const ChartBox = ({
   const options: object = {
     responsive: true,
     maintainAspectRatio: false,
+    layout: {
+      padding: 0,
+      margin: 0,
+    },
     plugins: {
+      legend: {
+        labels: {
+          usePointStyle: true,
+        },
+      },
       tooltip: {
         enabled: true,
+        usePointStyle: true,
         callbacks: {
           footer: function (context: [{ dataIndex: number }]) {
             const index = context[0].dataIndex;
