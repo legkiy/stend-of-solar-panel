@@ -108,6 +108,29 @@ const ChartBox = ({
 
   //date time amp1 amp2 amp3 v1 v2 v3
 
+  const zoom = {
+    zoom: {
+      wheel: {
+        enabled: true,
+      },
+      pan: {
+        enabled: true,
+      },
+      pinch: {
+        enabled: true,
+      },
+      mode: 'x',
+    },
+    pan: {
+      enabled: true,
+      mode: 'x',
+      threshold: 10,
+    },
+    limits: {
+      x: { minRange: 24 },
+    },
+  };
+
   const options: object = {
     responsive: true,
     maintainAspectRatio: false,
@@ -131,22 +154,7 @@ const ChartBox = ({
           },
         },
       },
-      zoom: {
-        zoom: {
-          wheel: {
-            enabled: true,
-          },
-          pan: {
-            enabled: true,
-          },
-          mode: 'x',
-        },
-        pan: {
-          enabled: true,
-          mode: 'x',
-          threshold: 10,
-        },
-      },
+      zoom,
     },
     scales: {
       y: {
