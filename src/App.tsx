@@ -20,7 +20,11 @@ function App() {
           nameTooltip={'tooltipVisibleAdditionalInf'}
           discription={
             <>
-              <h3>Статьи по проекту</h3>
+              <h4>
+                Возможные некорректные данны вызвнные сбоями в работе сети, на данные момент мы
+                стараемя учесть вме возможные ситуации
+              </h4>
+              <h3 style={{ marginTop: '20px' }}>Статьи по проекту</h3>
               <ul>
                 <li>
                   R. Ivanov, N. Maksakov Development of a solar energy meter for an experimental
@@ -45,15 +49,6 @@ function App() {
                 субсидии № 075-15-2020-787). Разработчики информационно-аналитической системы:
                 сотрудники отдела комплексных и региональных проблем энергетики ИСЭМ СО РАН.
               </h4>
-            </>
-          }
-        />
-        <Tooltip
-          dispatchFn={setTooltipVisibleFAQ}
-          nameTooltip={'tooltipVisibleFAQ'}
-          discription={
-            <>
-              <h3>FAQ</h3>
             </>
           }
         />

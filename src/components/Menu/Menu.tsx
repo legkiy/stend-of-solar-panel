@@ -23,9 +23,9 @@ const SidePanel = () => {
 
   const mounthFile = [];
   //цикл для перебора годов
-  for (let year = 2022; year < 2023; year++) {
+  for (let year = 2022; year < 2024; year++) {
     //цикл для перебора месяцев внутри каждого года
-    for (let month = 1; month < 12; month++) {
+    for (let month = 1; month < 13; month++) {
       //условие минимального значения
       if (year === 2022 && month < 8) month = 8;
       //условие для формата даты месяца меньше 10
@@ -77,16 +77,6 @@ const SidePanel = () => {
             onClick={() => dispatch(setTooltipVisibleAdditionalInf(!tooltipVisibleAdditionalInf))}
           >
             Доп. информация
-          </button>
-        }
-      />
-      <SideElement
-        elementInside={
-          <button
-            className="interactive-el"
-            onClick={() => dispatch(setTooltipVisibleFAQ(!tooltipVisibleFAQ))}
-          >
-            FAQ
           </button>
         }
       />
