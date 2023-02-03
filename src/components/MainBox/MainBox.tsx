@@ -33,7 +33,23 @@ const Main = ({}: IProps) => {
     const newTable = table.splice(1, tableLenght);
     newTable.forEach((row) => {
       const columns = row.split(',');
-      const date = columns[0];
+
+      const getNull = (date: number) => {
+        let result = String(date);
+        if (date < 10) {
+          result = '0' + String(date);
+        }
+        return result;
+      };
+      const date: any = columns[0].split('.');
+      const dateFormat = new Date(20 + date[2], date[1], date[0]);
+
+      const day = getNull(dateFormat.getDate());
+      const month = getNull(dateFormat.getMonth());
+      const yaer = dateFormat.getFullYear();
+
+      console.log(day + '.' + month + '.' + yaer);
+
       const time = columns[1];
 
       const amp1 = +columns[2];
@@ -48,7 +64,7 @@ const Main = ({}: IProps) => {
       const watt = amp.map((value, index) => value * volt[index]); //считаем мощность панелей умножая каждый эллемент amp на volt
       const prod = watt.map((value) => value / (0.1848 * 1.64 * 0.99)); //получаем приход солнечной радицаии учитывая КПД и площадь панелей
 
-      arrDate.push(date);
+      arrDate.push(day + '.' + month + '.' + yaer);
       arrTime.push(time);
 
       arrAmp.push(amp[el]);
@@ -57,7 +73,7 @@ const Main = ({}: IProps) => {
       arrProd.push(prod[el]);
     });
   }
-  const arrDate: string[] = [];
+  const arrDate: any[] = [];
   const arrTime: string[] = [];
   const arrAmp: number[] = [];
   const arrVolt: number[] = [];
