@@ -2,6 +2,7 @@ import ChartBox from '../ChartBox';
 import './MainBox.scss';
 import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
+import { D } from 'chart.js/dist/chunks/helpers.core';
 
 interface IProps {}
 
@@ -41,14 +42,12 @@ const Main = ({}: IProps) => {
         }
         return result;
       };
-      const date: any = columns[0].split('.');
-      const dateFormat = new Date(20 + date[2], date[1], date[0]);
+      const date = columns[0].split('.');
+      const dateFormat = new Date(+(20 + date[2]), +date[1], +date[0]).toLocaleDateString();
 
-      const day = getNull(dateFormat.getDate());
-      const month = getNull(dateFormat.getMonth());
-      const yaer = dateFormat.getFullYear();
-
-      console.log(day + '.' + month + '.' + yaer);
+      // const day = getNull(dateFormat.getDate());
+      // const month = getNull(dateFormat.getMonth());
+      // const yaer = dateFormat.getFullYear();
 
       const time = columns[1];
 
@@ -64,7 +63,7 @@ const Main = ({}: IProps) => {
       const watt = amp.map((value, index) => value * volt[index]); //считаем мощность панелей умножая каждый эллемент amp на volt
       const prod = watt.map((value) => value / (0.1848 * 1.64 * 0.99)); //получаем приход солнечной радицаии учитывая КПД и площадь панелей
 
-      arrDate.push(day + '.' + month + '.' + yaer);
+      arrDate.push(dateFormat); //d.m.t
       arrTime.push(time);
 
       arrAmp.push(amp[el]);
