@@ -169,11 +169,11 @@ const ChartBox = ({
   return (
     <div className="chart-and-btn">
       <div className="chart">
-        {/* {arrDate.length < 400 ? (
+        {arrDate.includes('Invalid Date') ? (
           <p>Данные отсутствуют</p>
-        ) : ( */}
+        ) : (
           <Line ref={chartRef} data={chartData} options={options} />
-        {/* )} */}
+        )}
       </div>
       <button
         className="interactive-el zoom-reset-btn"

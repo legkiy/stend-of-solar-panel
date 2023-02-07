@@ -7,10 +7,10 @@ import { AnyAction } from '@reduxjs/toolkit';
 interface IProps {
   dispatchFn: (payload: any) => AnyAction;
   nameTooltip: 'tooltipVisibleAdditionalInf' | 'tooltipVisibleFAQ';
-  discription: ReactNode;
+  children: ReactNode;
 }
 
-const DropDown = ({ dispatchFn, nameTooltip, discription }: IProps) => {
+const DropDown = ({ dispatchFn, nameTooltip, children }: IProps) => {
   const dispatch = useDispatch();
   const tooltipVisible = useSelector((state: RootState) => state.tooltip[nameTooltip]);
 
@@ -51,7 +51,7 @@ const DropDown = ({ dispatchFn, nameTooltip, discription }: IProps) => {
             </g>
           </svg>
         </button>
-        <div className="tooltip-content">{discription}</div>
+        <div className="tooltip-content">{children}</div>
       </div>
     </div>
   );

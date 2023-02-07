@@ -43,7 +43,7 @@ const Main = ({}: IProps) => {
         return result;
       };
       const date = columns[0].split('.');
-      const dateFormat = new Date(+(20 + date[2]), +date[1], +date[0]).toLocaleDateString();
+      const dateFormat = new Date(+(20 + date[2]), +date[0] - 1, +date[1]).toLocaleDateString();
 
       // const day = getNull(dateFormat.getDate());
       // const month = getNull(dateFormat.getMonth());
@@ -72,7 +72,7 @@ const Main = ({}: IProps) => {
       arrProd.push(prod[el]);
     });
   }
-  const arrDate: any[] = [];
+  const arrDate: string[] = [];
   const arrTime: string[] = [];
   const arrAmp: number[] = [];
   const arrVolt: number[] = [];
