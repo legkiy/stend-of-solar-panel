@@ -30,6 +30,11 @@ const Main = ({}: IProps) => {
     });
     const data = await res.text();
     const table = data.split(/\n/);
+    if (table.includes('Card initialized.\r')) {
+      const index = table.indexOf('Card initialized.\r');
+      table.splice(index, 1);
+    }
+
     const tableLenght = table.length - 2;
     const newTable = table.splice(1, tableLenght);
     newTable.forEach((row) => {
@@ -43,7 +48,7 @@ const Main = ({}: IProps) => {
         return result;
       };
       const date = columns[0].split('.');
-      const dateFormat = new Date(+(20 + date[2]), +date[0] - 1, +date[1]).toLocaleDateString();
+      const dateFormat = new Date(+(20 + date[2]), +date[1] - 1, +date[0]);
 
       // const day = getNull(dateFormat.getDate());
       // const month = getNull(dateFormat.getMonth());
@@ -63,7 +68,15 @@ const Main = ({}: IProps) => {
       const watt = amp.map((value, index) => value * volt[index]); //считаем мощность панелей умножая каждый эллемент amp на volt
       const prod = watt.map((value) => value / (0.1848 * 1.64 * 0.99)); //получаем приход солнечной радицаии учитывая КПД и площадь панелей
 
-      arrDate.push(dateFormat); //d.m.t
+      arrDate.push(
+        dateFormat.getDate() +
+          '/' +
+          (+dateFormat.getMonth() + 1 < 10
+            ? '0' + (+dateFormat.getMonth() + 1)
+            : +dateFormat.getMonth() + 1) +
+          '/' +
+          dateFormat.getFullYear()
+      ); //d.m.t
       arrTime.push(time);
 
       arrAmp.push(amp[el]);

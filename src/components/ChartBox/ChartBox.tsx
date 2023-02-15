@@ -35,7 +35,7 @@ interface IProprs {
   type: 'amp' | 'volt' | 'watt';
   label: string;
   label2?: string;
-  arrDate: string[];
+  arrDate: string[] | any;
   arrTime: string[];
   yAxis: number[];
   y2Axis?: number[];
@@ -169,7 +169,7 @@ const ChartBox = ({
   return (
     <div className="chart-and-btn">
       <div className="chart">
-        {arrDate.includes('Invalid Date') ? (
+        {arrDate.includes(NaN) ? (
           <p>Данные отсутствуют</p>
         ) : (
           <Line ref={chartRef} data={chartData} options={options} />
