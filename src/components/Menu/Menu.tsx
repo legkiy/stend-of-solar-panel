@@ -5,19 +5,15 @@ import PanelButton from '../PanelButton';
 import isemLogo from './isemLogo.png';
 import Select from '../Select';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  setTooltipVisibleAdditionalInf,
-  setTooltipVisibleFAQ,
-} from '../../features/tooltip/tooltipSlice';
+import { setTooltipVisibleAdditionalInf } from '../../features/tooltip/tooltipSlice';
 import { RootState } from '../../store/store';
-import { Chart } from 'react-chartjs-2';
+import { useState, useEffect } from 'react';
 
 const SidePanel = () => {
   const dispatch = useDispatch();
   const tooltipVisibleAdditionalInf = useSelector(
     (state: RootState) => state.tooltip.tooltipVisibleAdditionalInf
   );
-  const tooltipVisibleFAQ = useSelector((state: RootState) => state.tooltip.tooltipVisibleFAQ);
 
   const menuOpen = useSelector((state: RootState) => state.menuBtn.menuOpen);
 
@@ -37,6 +33,13 @@ const SidePanel = () => {
       mounthFile.push({ option: monthYear, value: monthYearFile });
     }
   }
+
+  const [data, setData] = useState('Empty');
+  useEffect(() => {
+    fetch('/test')
+      .then((res) => res.json())
+      .then((data) => setData(data.test));
+  }, []);
 
   return (
     <div className={`menu ${menuOpen && 'menu-open'}`}>
@@ -80,6 +83,7 @@ const SidePanel = () => {
           </button>
         }
       />
+      <SideElement elementInside={<p>{data}</p>} />
     </div>
   );
 };

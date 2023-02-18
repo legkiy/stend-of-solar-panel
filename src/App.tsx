@@ -1,12 +1,8 @@
 import './App.css';
 import MainBox from './components/MainBox';
 import Menu from './components/Menu';
-import {
-  setTooltipVisibleAdditionalInf,
-  setTooltipVisibleFAQ,
-} from './features/tooltip/tooltipSlice';
+import { setTooltipVisibleAdditionalInf } from './features/tooltip/tooltipSlice';
 import Tooltip from './components/Tooltip';
-import Paper from './components/Tooltip/PaperList';
 import PaperList from './components/Tooltip/PaperList';
 
 //date time amp1 amp2 amp3 v1 v2 v3

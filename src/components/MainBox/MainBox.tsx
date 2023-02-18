@@ -2,7 +2,10 @@ import ChartBox from '../ChartBox';
 import './MainBox.scss';
 import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
-import { D } from 'chart.js/dist/chunks/helpers.core';
+//@ts-ignore
+import * as streamedian from 'streamedian/player.js';
+//@ts-ignore
+import RTSPClient from 'wsp/client/rtsp/client';
 
 interface IProps {}
 
@@ -93,6 +96,27 @@ const Main = ({}: IProps) => {
   const arrProd: number[] = [];
 
   const promise: Promise<void> = getData(panel);
+  const source =
+    'rtsp://admin:Password@192.168.31.53:554/cam/realmonitor?channel=1&subtype=0&unicast=true&proto=Onvif';
+
+  // let mediaElement = RTSPClient .attach(document.getElementById('test_video'));
+  // let player = new streamedian.WSPlayer(mediaElement, {
+  //   // url: `${STREAM_URL}`,      // overrides mediaElement's sources
+  //   modules: [
+  //     {
+  //       // client module constructor. Should be subclass or BaseClient. RTSPClient by default
+  //       // client: RTSPClient,
+  //       transport: {
+  //         // client module constructor. Should be subclass or BaseTransport. WebsocketTransport by default
+  //         // constructor: WebsocketTransport,
+  //         options: {
+  //           // address of websocket proxy described below. ws${location.protocol=='https:'?'s':''}://${location.host}/ws/ by default
+  //           socket: 'ws://websocket_proxy_address/ws',
+  //         },
+  //       },
+  //     },
+  //   ],
+  // });
 
   return (
     <div className="mainBox">
@@ -128,6 +152,9 @@ const Main = ({}: IProps) => {
           promise={promise}
           panel={panel}
         />
+        <div className="chart-and-btn">
+          <video id="test_video" controls autoPlay={true} src={source}></video>
+        </div>
       </div>
     </div>
   );
