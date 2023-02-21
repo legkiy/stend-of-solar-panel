@@ -21,19 +21,19 @@ const DropDown = ({ dispatchFn, nameTooltip, children }: IProps) => {
   const lineBottom = svgSquare - lineTop;
 
   const tooltipHeight = 80;
-  const tooltipWidht = 90;
+  const tooltipWidht = 80;
   const hMidle = (100 - tooltipHeight) / 2;
   const wMidle = (100 - tooltipWidht) / 2;
 
-  const getTooltipVisible = { top: `${0}%`, left: `${0}%` };
-  const getTooltipNoVisible = { top: '-102vh', left: `${0}vw` };
+  const tooltopPosition = { top: `${hMidle}vh`, left: `${wMidle}vw` };
+  const tooltopPositionOut = { top: `${0}vh`, left: `${0}vw` };
 
   return (
     <div
-      className="tooltip-background"
-      style={tooltipVisible ? getTooltipVisible : getTooltipNoVisible}
+      className={`tooltip-back ${tooltipVisible ? 'open-tooltip' : 'close-tooltip'}`}
+      style={tooltipVisible ? tooltopPositionOut : tooltopPositionOut}
     >
-      <div className="tooltip">
+      <div className={`tooltip ${tooltipVisible ? 'open-tooltip' : 'close-tooltip'}`}>
         <button
           className="tooltip-btn interactive-el"
           onClick={() => dispatch(dispatchFn(!tooltipVisible))}

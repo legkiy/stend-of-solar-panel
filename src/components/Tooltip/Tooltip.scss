@@ -1,15 +1,17 @@
-.tooltip-background {
+.tooltip-back {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: rgba(65, 65, 65, 0.205);
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.308);
-  position: fixed;
   z-index: 1000;
-  transition: all 0.1s;
+  visibility: hidden;
+  transition: visibility 0.22s, opacity 0.22s;
   align-items: center;
   justify-content: center;
   display: flex;
 }
-
 .tooltip {
   flex-direction: column;
   width: 80vw;
@@ -18,9 +20,21 @@
   border-radius: 25px;
   background-color: rgba(241, 251, 255, 0.952);
   box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.507);
+  transition: visibility 0.22s, opacity 0.22s, margin-bottom 0.3s;
   ul {
     margin: 20px;
   }
+}
+
+.open-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+.close-tooltip {
+  visibility: hidden;
+  opacity: 0;
+  margin-bottom: 200px;
 }
 
 .tooltip-btn {
