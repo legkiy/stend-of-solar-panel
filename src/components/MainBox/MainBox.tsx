@@ -6,6 +6,9 @@ import { useSelector } from 'react-redux';
 import * as streamedian from 'streamedian/player.js';
 //@ts-ignore
 import RTSPClient from 'wsp/client/rtsp/client';
+import { useEffect } from 'react';
+//@ts-ignore
+import jsmpeg from 'jsmpeg';
 
 interface IProps {}
 
@@ -99,24 +102,11 @@ const Main = ({}: IProps) => {
   const source =
     'rtsp://admin:Password@192.168.31.53:554/cam/realmonitor?channel=1&subtype=0&unicast=true&proto=Onvif';
 
-  // let mediaElement = RTSPClient .attach(document.getElementById('test_video'));
-  // let player = new streamedian.WSPlayer(mediaElement, {
-  //   // url: `${STREAM_URL}`,      // overrides mediaElement's sources
-  //   modules: [
-  //     {
-  //       // client module constructor. Should be subclass or BaseClient. RTSPClient by default
-  //       // client: RTSPClient,
-  //       transport: {
-  //         // client module constructor. Should be subclass or BaseTransport. WebsocketTransport by default
-  //         // constructor: WebsocketTransport,
-  //         options: {
-  //           // address of websocket proxy described below. ws${location.protocol=='https:'?'s':''}://${location.host}/ws/ by default
-  //           socket: 'ws://websocket_proxy_address/ws',
-  //         },
-  //       },
-  //     },
-  //   ],
-  // });
+  useEffect(() => {
+    var canvas = document.getElementById('chanel1');
+    var websocket = new WebSocket('ws://127.0.0.1:9999');
+    var player = new jsmpeg(websocket, { canvas: canvas, autoplay: true, loop: true });
+  }, []);
 
   return (
     <div className="mainBox">
@@ -153,7 +143,10 @@ const Main = ({}: IProps) => {
           panel={panel}
         />
         <div className="chart-and-btn">
-          <video id="test_video" controls autoPlay={true} src={source}></video>
+          <canvas
+            id="chanel1"
+            style={{ height: '100%', width: '100%', borderRadius: '35px' }}
+          ></canvas>
         </div>
       </div>
     </div>

@@ -20,6 +20,7 @@
     "d3": "^7.6.1",
     "express": "^4.18.2",
     "hls.js": "^1.3.3",
+    "jsmpeg": "^1.0.0",
     "nextcloud_fetch": "^2.1.0",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.0.1",
@@ -36,7 +37,7 @@
     "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:3030",
-    "eslintConfig": {
+  "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
