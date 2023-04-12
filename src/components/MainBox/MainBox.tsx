@@ -8,7 +8,7 @@ import * as streamedian from 'streamedian/player.js';
 import RTSPClient from 'wsp/client/rtsp/client';
 import { useEffect } from 'react';
 //@ts-ignore
-import jsmpeg from 'jsmpeg';
+// import jsmpeg from 'jsmpeg';
 
 interface IProps {}
 
@@ -102,11 +102,11 @@ const Main = ({}: IProps) => {
   const source =
     'rtsp://admin:Password@192.168.31.53:554/cam/realmonitor?channel=1&subtype=0&unicast=true&proto=Onvif';
 
-  useEffect(() => {
-    var canvas = document.getElementById('chanel1');
-    var websocket = new WebSocket('ws://127.0.0.1:9999');
-    var player = new jsmpeg(websocket, { canvas: canvas, autoplay: true, loop: true });
-  }, []);
+  // useEffect(() => {
+  //   var canvas = document.getElementById('chanel1');
+  //   var websocket = new WebSocket('ws://127.0.0.1:9999');
+  //   var player = new jsmpeg(websocket, { canvas: canvas, autoplay: true, loop: true });
+  // }, []);
 
   return (
     <div className="mainBox">

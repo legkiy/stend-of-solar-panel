@@ -35,11 +35,31 @@ const SidePanel = () => {
   }
 
   const [data, setData] = useState('Empty');
+
+  const [data2, setData2] = useState('Empty');
+
+  const [dataBtn, setDataBtn] = useState(false);
+
   useEffect(() => {
     fetch('/test')
       .then((res) => res.json())
       .then((data) => setData(data.test));
   }, []);
+
+  useEffect(() => {
+    fetch('http://localhost:3030/data', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setData2(data));
+    console.log(data2);
+  }, [dataBtn]);
+
+  console.log(dataBtn);
+  
 
   return (
     <div className={`menu ${menuOpen && 'menu-open'}`}>
@@ -84,6 +104,14 @@ const SidePanel = () => {
         }
       />
       <SideElement elementInside={<p>{data}</p>} />
+      <SideElement
+        elementInside={
+          <>
+            <button onClick={() => setDataBtn((prev) => !prev)}>get data</button>
+            <div className="data"></div>
+          </>
+        }
+      />
     </div>
   );
 };
