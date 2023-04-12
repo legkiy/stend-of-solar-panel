@@ -54,7 +54,10 @@ const ChartBox = ({
   promise,
   panel,
 }: IProprs) => {
-  const selectCsv = useSelector((state: RootState) => state.selectFile.selectCsv);
+  const {
+    selectFile: { selectCsv },
+    panel: { panelData },
+  } = useSelector((state: RootState) => state);
 
   const [chartData, setChartData] = useState<any>({
     datasets: [],
@@ -104,7 +107,7 @@ const ChartBox = ({
             }
       );
     });
-  }, [panel, selectCsv]);
+  }, [panel, selectCsv, panelData]);
 
   //date time amp1 amp2 amp3 v1 v2 v3
 

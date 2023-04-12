@@ -1,7 +1,27 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+interface IProps {
+  selectPanel: number;
+  panelData: {
+    arrDate: [];
+    arrTime: [];
+    arrAmp: [];
+    arrVolt: [];
+    arrWatt: [];
+    arrProd: [];
+  };
+}
+
+const initialState: IProps = {
   selectPanel: 0,
+  panelData: {
+    arrDate: [],
+    arrTime: [],
+    arrAmp: [],
+    arrVolt: [],
+    arrWatt: [],
+    arrProd: [],
+  },
 };
 
 export const panelSlice = createSlice({
@@ -11,8 +31,11 @@ export const panelSlice = createSlice({
     setSelectPanel: (state, action) => {
       state.selectPanel = action.payload;
     },
+    setPanelData: (state, action) => {
+      state.panelData = action.payload;
+    },
   },
 });
 
-export const { setSelectPanel } = panelSlice.actions;
+export const { setSelectPanel, setPanelData } = panelSlice.actions;
 export default panelSlice.reducer;

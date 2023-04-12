@@ -8,13 +8,13 @@ import * as streamedian from 'streamedian/player.js';
 import RTSPClient from 'wsp/client/rtsp/client';
 import { useEffect } from 'react';
 //@ts-ignore
-// import jsmpeg from 'jsmpeg';
+import jsmpeg from 'jsmpeg';
 
 interface IProps {}
 
 const Main = ({}: IProps) => {
   const selectCsv = useSelector((state: RootState) => state.selectFile.selectCsv);
-  const panel = useSelector((state: RootState) => state.panel.selectPanel);
+  const { selectPanel, panelData } = useSelector((state: RootState) => state.panel);
 
   let csv = `./${selectCsv}.csv`;
 
@@ -98,15 +98,15 @@ const Main = ({}: IProps) => {
   const arrWatt: number[] = [];
   const arrProd: number[] = [];
 
-  const promise: Promise<void> = getData(panel);
+  const promise: Promise<void> = getData(selectPanel);
   const source =
     'rtsp://admin:Password@192.168.31.53:554/cam/realmonitor?channel=1&subtype=0&unicast=true&proto=Onvif';
 
-  // useEffect(() => {
-  //   var canvas = document.getElementById('chanel1');
-  //   var websocket = new WebSocket('ws://127.0.0.1:9999');
-  //   var player = new jsmpeg(websocket, { canvas: canvas, autoplay: true, loop: true });
-  // }, []);
+  useEffect(() => {
+    var canvas = document.getElementById('chanel1');
+    var websocket = new WebSocket('ws://127.0.0.1:9999');
+    var player = new jsmpeg(websocket, { canvas: canvas, autoplay: true, loop: true });
+  }, []);
 
   return (
     <div className="mainBox">
@@ -114,20 +114,20 @@ const Main = ({}: IProps) => {
         <ChartBox
           type={'amp'}
           label={'Сила тока, A'}
-          arrDate={arrDate}
-          arrTime={arrTime}
-          yAxis={arrAmp}
+          arrDate={panelData.arrDate}
+          arrTime={panelData.arrTime}
+          yAxis={panelData.arrAmp}
           promise={promise}
-          panel={panel}
+          panel={selectPanel}
         />
         <ChartBox
           type={'volt'}
           label={'Напряжение, V'}
-          arrDate={arrDate}
-          arrTime={arrTime}
-          yAxis={arrVolt}
+          arrDate={panelData.arrDate}
+          arrTime={panelData.arrTime}
+          yAxis={panelData.arrVolt}
           promise={promise}
-          panel={panel}
+          panel={selectPanel}
         />
       </div>
       <div className="chart-box">
@@ -135,12 +135,12 @@ const Main = ({}: IProps) => {
           type={'watt'}
           label={'Мощность, W'}
           label2={'Радиация, W/m2'}
-          arrDate={arrDate}
-          arrTime={arrTime}
-          yAxis={arrWatt}
-          y2Axis={arrProd}
+          arrDate={panelData.arrDate}
+          arrTime={panelData.arrTime}
+          yAxis={panelData.arrWatt}
+          y2Axis={panelData.arrProd}
           promise={promise}
-          panel={panel}
+          panel={selectPanel}
         />
         <div className="chart-and-btn">
           <canvas

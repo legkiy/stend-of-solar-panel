@@ -6,6 +6,7 @@ import isemLogo from './isemLogo.png';
 import Select from '../Select';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTooltipVisibleAdditionalInf } from '../../features/tooltip/tooltipSlice';
+import { setSelectPanel, setPanelData } from '../../features/panel/panelSlice';
 import { RootState } from '../../store/store';
 import { useState, useEffect } from 'react';
 
@@ -15,7 +16,10 @@ const SidePanel = () => {
     (state: RootState) => state.tooltip.tooltipVisibleAdditionalInf
   );
 
-  const menuOpen = useSelector((state: RootState) => state.menuBtn.menuOpen);
+  const {
+    menuBtn: { menuOpen },
+    panel: { panelData },
+  } = useSelector((state: RootState) => state);
 
   const mounthFile = [];
   //цикл для перебора годов
@@ -36,9 +40,11 @@ const SidePanel = () => {
 
   const [data, setData] = useState('Empty');
 
-  const [data2, setData2] = useState('Empty');
+  const [data2, setData2] = useState({});
 
-  const [dataBtn, setDataBtn] = useState(false);
+  const [dataBtn1, setDataBtn1] = useState(false);
+  const [dataBtn2, setDataBtn2] = useState(false);
+  const [dataBtn3, setDataBtn3] = useState(false);
 
   useEffect(() => {
     fetch('/test')
@@ -47,19 +53,45 @@ const SidePanel = () => {
   }, []);
 
   useEffect(() => {
-    fetch('http://localhost:3030/data', {
-      method: 'POST',
+    fetch('/first-panel', {
+      method: 'post',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
       },
     })
       .then((res) => res.json())
-      .then((data) => setData2(data));
-    console.log(data2);
-  }, [dataBtn]);
+      .then((data) => dispatch(setPanelData(data)));
+    dispatch(setSelectPanel(1));
 
-  console.log(dataBtn);
-  
+    console.log(panelData);
+  }, [dataBtn1]);
+
+  useEffect(() => {
+    fetch('/secons-panel', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => dispatch(setPanelData(data)));
+    dispatch(setSelectPanel(2));
+    console.log(panelData);
+  }, [dataBtn2]);
+
+  useEffect(() => {
+    fetch('/third-panel', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => dispatch(setPanelData(data)));
+    dispatch(setSelectPanel(3));
+
+    console.log(panelData);
+  }, [dataBtn3]);
 
   return (
     <div className={`menu ${menuOpen && 'menu-open'}`}>
@@ -78,6 +110,16 @@ const SidePanel = () => {
         elementInside={
           <>
             <Select options={mounthFile} />
+          </>
+        }
+      />
+      <SideElement
+        elementInside={
+          <>
+            <p>Выбор панели</p>
+            <button onClick={() => setDataBtn1((prev) => !prev)}>get data</button>
+            <button onClick={() => setDataBtn2((prev) => !prev)}>get data</button>
+            <button onClick={() => setDataBtn3((prev) => !prev)}>get data</button>
           </>
         }
       />
@@ -104,14 +146,6 @@ const SidePanel = () => {
         }
       />
       <SideElement elementInside={<p>{data}</p>} />
-      <SideElement
-        elementInside={
-          <>
-            <button onClick={() => setDataBtn((prev) => !prev)}>get data</button>
-            <div className="data"></div>
-          </>
-        }
-      />
     </div>
   );
 };

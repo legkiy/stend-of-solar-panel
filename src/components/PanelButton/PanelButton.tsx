@@ -10,12 +10,12 @@ interface IProprsPanelButton {
 
 const Button = ({ options }: IProprsPanelButton) => {
   const setPanel = useDispatch();
-  const panel = useSelector((state: RootState) => state.panel.selectPanel);
+  const { selectPanel } = useSelector((state: RootState) => state.panel);
 
   const value = options + 1;
   return (
     <button
-      className={`PanelButton interactive-el ${options === panel ? 'chosen' : ' '}`}
+      className={`PanelButton interactive-el ${options === selectPanel ? 'chosen' : ' '}`}
       onClick={() => setPanel(setSelectPanel(options))}
     >
       {value}
