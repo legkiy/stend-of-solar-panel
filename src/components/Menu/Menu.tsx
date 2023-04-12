@@ -117,13 +117,30 @@ const SidePanel = () => {
         elementInside={
           <>
             <p>Выбор панели</p>
-            <button onClick={() => setDataBtn1((prev) => !prev)}>get data</button>
-            <button onClick={() => setDataBtn2((prev) => !prev)}>get data</button>
-            <button onClick={() => setDataBtn3((prev) => !prev)}>get data</button>
+            <div>
+              <button
+                className={`PanelButton interactive-el`}
+                onClick={() => setDataBtn1((prev) => !prev)}
+              >
+                1
+              </button>
+              <button
+                className={`PanelButton interactive-el`}
+                onClick={() => setDataBtn2((prev) => !prev)}
+              >
+                2
+              </button>
+              <button
+                className={`PanelButton interactive-el`}
+                onClick={() => setDataBtn3((prev) => !prev)}
+              >
+                3
+              </button>
+            </div>
           </>
         }
       />
-      <SideElement
+      {/* <SideElement
         elementInside={
           <>
             <p>Выбор панели</p>
@@ -134,7 +151,7 @@ const SidePanel = () => {
             </div>
           </>
         }
-      />
+      /> */}
       <SideElement
         elementInside={
           <button
