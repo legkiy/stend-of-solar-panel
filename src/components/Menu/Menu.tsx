@@ -18,7 +18,6 @@ const SidePanel = () => {
 
   const {
     menuBtn: { menuOpen },
-    panel: { panelData },
   } = useSelector((state: RootState) => state);
 
   const mounthFile = [];
@@ -40,58 +39,11 @@ const SidePanel = () => {
 
   const [data, setData] = useState('Empty');
 
-  const [data2, setData2] = useState({});
-
-  const [dataBtn1, setDataBtn1] = useState(false);
-  const [dataBtn2, setDataBtn2] = useState(false);
-  const [dataBtn3, setDataBtn3] = useState(false);
-
   useEffect(() => {
     fetch('/test')
       .then((res) => res.json())
       .then((data) => setData(data.test));
   }, []);
-
-  useEffect(() => {
-    fetch('/first-panel', {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => dispatch(setPanelData(data)));
-    dispatch(setSelectPanel(1));
-
-    console.log(panelData);
-  }, [dataBtn1]);
-
-  useEffect(() => {
-    fetch('/secons-panel', {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => dispatch(setPanelData(data)));
-    dispatch(setSelectPanel(2));
-    console.log(panelData);
-  }, [dataBtn2]);
-
-  useEffect(() => {
-    fetch('/third-panel', {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => dispatch(setPanelData(data)));
-    dispatch(setSelectPanel(3));
-
-    console.log(panelData);
-  }, [dataBtn3]);
 
   return (
     <div className={`menu ${menuOpen && 'menu-open'}`}>
@@ -118,40 +70,13 @@ const SidePanel = () => {
           <>
             <p>Выбор панели</p>
             <div>
-              <button
-                className={`PanelButton interactive-el`}
-                onClick={() => setDataBtn1((prev) => !prev)}
-              >
-                1
-              </button>
-              <button
-                className={`PanelButton interactive-el`}
-                onClick={() => setDataBtn2((prev) => !prev)}
-              >
-                2
-              </button>
-              <button
-                className={`PanelButton interactive-el`}
-                onClick={() => setDataBtn3((prev) => !prev)}
-              >
-                3
-              </button>
+              <PanelButton options={1} panelUrl="first-panel" />
+              <PanelButton options={2} panelUrl="second-panel" />
+              <PanelButton options={3} panelUrl="third-panel" />
             </div>
           </>
         }
       />
-      {/* <SideElement
-        elementInside={
-          <>
-            <p>Выбор панели</p>
-            <div>
-              <PanelButton options={0} />
-              <PanelButton options={1} />
-              <PanelButton options={2} />
-            </div>
-          </>
-        }
-      /> */}
       <SideElement
         elementInside={
           <button

@@ -39,8 +39,8 @@ interface IProprs {
   arrTime: string[];
   yAxis: number[];
   y2Axis?: number[];
-  promise: Promise<void>;
-  panel: number;
+  // promise: Promise<void>;
+  // panel: number;
 }
 
 const ChartBox = ({
@@ -51,8 +51,8 @@ const ChartBox = ({
   arrTime,
   yAxis,
   y2Axis,
-  promise,
-  panel,
+  // promise,
+  // panel,
 }: IProprs) => {
   const {
     selectFile: { selectCsv },
@@ -94,20 +94,18 @@ const ChartBox = ({
   }
 
   useEffect(() => {
-    promise.then(() => {
-      setChartData(
-        type === 'watt'
-          ? {
-              labels: arrDate,
-              datasets: [getDrawChart(label, yAxis, color), getDrawChart(label2!, y2Axis!, color2)],
-            }
-          : {
-              labels: arrDate,
-              datasets: [getDrawChart(label, yAxis, color)],
-            }
-      );
-    });
-  }, [panel, selectCsv, panelData]);
+    setChartData(
+      type === 'watt'
+        ? {
+            labels: arrDate,
+            datasets: [getDrawChart(label, yAxis, color), getDrawChart(label2!, y2Axis!, color2)],
+          }
+        : {
+            labels: arrDate,
+            datasets: [getDrawChart(label, yAxis, color)],
+          }
+    );
+  }, [panelData]);
 
   //date time amp1 amp2 amp3 v1 v2 v3
 
