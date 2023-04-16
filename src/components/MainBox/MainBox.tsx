@@ -99,13 +99,14 @@ const Main = ({}: IProps) => {
   // const arrProd: number[] = [];
 
   // const promise: Promise<void> = getData(selectPanel);
-  const source =
-    'rtsp://admin:Password@192.168.31.53:554/cam/realmonitor?channel=1&subtype=0&unicast=true&proto=Onvif';
-
+  
+  /**
+   * Для подключения к камере
+   */
   useEffect(() => {
-    var canvas = document.getElementById('chanel1');
-    var websocket = new WebSocket('ws://127.0.0.1:9999');
-    var player = new jsmpeg(websocket, { canvas: canvas, autoplay: true, loop: true });
+    const canvas = document.getElementById('chanel1');
+    const websocket = new WebSocket('ws://127.0.0.1:9999');
+    const player = new jsmpeg(websocket, { canvas: canvas, autoplay: true, loop: true });
   }, []);
 
   return (

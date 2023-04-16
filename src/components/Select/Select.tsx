@@ -11,7 +11,7 @@ interface IPropsSelect {
 const Select = ({ options }: IPropsSelect) => {
   const dispatch = useDispatch();
   const dropdownActive = useSelector((state: RootState) => state.dropdown.dropdownActive);
-  const selectFile = useSelector((state: RootState) => state.selectFile.selectFile);
+  const { selectFile } = useSelector((state: RootState) => state.selectFile);
 
   return (
     <>

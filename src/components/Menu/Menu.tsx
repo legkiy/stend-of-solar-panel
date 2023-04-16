@@ -6,9 +6,9 @@ import isemLogo from './isemLogo.png';
 import Select from '../Select';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTooltipVisibleAdditionalInf } from '../../features/tooltip/tooltipSlice';
-import { setSelectPanel, setPanelData } from '../../features/panel/panelSlice';
+import { setPanelData } from '../../features/panel/panelSlice';
 import { RootState } from '../../store/store';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 const SidePanel = () => {
   const dispatch = useDispatch();
@@ -18,6 +18,8 @@ const SidePanel = () => {
 
   const {
     menuBtn: { menuOpen },
+    panel: { panelURL, selectPanel, panelData },
+    selectFile: { selectCsv },
   } = useSelector((state: RootState) => state);
 
   const mounthFile = [];
@@ -37,13 +39,17 @@ const SidePanel = () => {
     }
   }
 
-  const [data, setData] = useState('Empty');
-
+  // получаем данные с бэка
   useEffect(() => {
-    fetch('/test')
+    fetch(`/panel-${selectPanel}/${selectCsv}`, {
+      method: 'get',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+    })
       .then((res) => res.json())
-      .then((data) => setData(data.test));
-  }, []);
+      .then((data) => dispatch(setPanelData(data)));
+  }, [selectPanel, panelURL, selectCsv]);
 
   return (
     <div className={`menu ${menuOpen && 'menu-open'}`}>
@@ -70,9 +76,9 @@ const SidePanel = () => {
           <>
             <p>Выбор панели</p>
             <div>
-              <PanelButton options={1} panelUrl="first-panel" />
-              <PanelButton options={2} panelUrl="second-panel" />
-              <PanelButton options={3} panelUrl="third-panel" />
+              <PanelButton options={1} />
+              <PanelButton options={2} />
+              <PanelButton options={3} />
             </div>
           </>
         }
@@ -87,7 +93,6 @@ const SidePanel = () => {
           </button>
         }
       />
-      <SideElement elementInside={<p>{data}</p>} />
     </div>
   );
 };
